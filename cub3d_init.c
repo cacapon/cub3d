@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:36:57 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/19 15:45:24 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/19 17:00:24 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static t_player	_player_init(void)
 	t_player	player;
 
 	player.pos = (t_vector2){.x = 0.0, .y = 0.0};
-	player.dir = (t_vector2){.x = 0.0, .y = 0.0};
-	player.plane = (t_vector2){.x = 0.0, .y = 0.0};
+	player.dir = (t_vector2){.x = 0.0, .y = -1.0};
+	player.plane = (t_vector2){.x = 0.66, .y = 0.0};
 	return (player);
 }
 
