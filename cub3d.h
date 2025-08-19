@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/19 15:45:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/19 17:53:05 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 # define WIN_H 480
 # define WIN_W 640
 # define TITLE_NAME "Cub3D"
+# define HIT_XLINE 0
+# define HIT_YLINE 1
 
 # include "mlx/mlx.h"
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
+# include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -37,6 +40,12 @@ typedef struct s_vector2i
 	int			x;
 	int			y;
 }				t_vector2i;
+
+typedef struct s_size2i
+{
+	int			w;
+	int			h;
+}				t_size2i;
 
 typedef struct s_img
 {
@@ -68,7 +77,7 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	t_vector2i	win_size;
+	t_size2i	win_size;
 	t_textures	textures;
 	int			floor_color;
 	int			ceiling_color;

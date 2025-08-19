@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:36:57 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/19 17:00:24 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/19 18:28:07 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static t_player	_player_init(void)
 t_data	*cub3d_init(void)
 {
 	t_data		*data;
-	t_player	*t_player;
 
 	data = malloc(sizeof(t_data));
 	if (!data)
@@ -38,11 +37,11 @@ t_data	*cub3d_init(void)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (free(data), NULL);
-	data->win_size = (t_vector2i){.x = WIN_W, .y = WIN_H};
-	data->win = mlx_new_window(data->mlx, data->win_size.x, data->win_size.y,
+	data->win_size = (t_size2i){.w = WIN_W, .h = WIN_H};
+	data->win = mlx_new_window(data->mlx, data->win_size.w, data->win_size.h,
 			TITLE_NAME);
 	if (!data->win)
-		return (free(data->mlx), free(data), NULL);
+		return (mlx_destroy_display(data->mlx), free(data), NULL);
 	data->player = _player_init();
 	return (data);
 }
