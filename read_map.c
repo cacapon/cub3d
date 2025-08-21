@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:13:58 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/20 18:55:02 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/21 23:03:12 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@
 
 #define MAP_HEIGHT 7
 
-// マップ情報をcharダブルポインタで格納
 void	read_map(t_data *data)
 {
 	data->map = (char **)malloc(sizeof(char *) * MAP_HEIGHT);
 	if (!data->map)
-		exit(1); // メモリ確保失敗時は終了
+		exit(1);
 	data->map[0] = strdup("11111");
 	data->map[1] = strdup("10001");
-	data->map[2] = strdup("10101");
+	data->map[2] = strdup("10201");
 	data->map[3] = strdup("10001");
-	data->map[4] = strdup("10001");
-	data->map[5] = strdup("10N01");
+	data->map[4] = strdup("10N01");
+	data->map[5] = strdup("10001");
 	data->map[6] = strdup("11111");
-	if (!data->map[0] || !data->map[1] || !data->map[2] || !data->map[3]
-		|| !data->map[4] || !data->map[5] || !data->map[6])
+	for (int i = 0; i < MAP_HEIGHT; i++)
 	{
-		// どれかの strdup が失敗した場合も終了
-		for (int i = 0; i < MAP_HEIGHT; i++)
-			free(data->map[i]);
-		free(data->map);
-		exit(1);
+		if (!data->map[i])
+		{
+			for (int j = 0; j < i; j++)
+				free(data->map[j]);
+			free(data->map);
+			exit(1);
+		}
 	}
 }

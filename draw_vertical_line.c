@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:46:39 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/20 21:40:03 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/21 23:30:20 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_wall_in_vertical_line(t_ray *ray, t_img *img)
 	{
 		ray->tex_y = (int)ray->tex_pos;
 		if (ray->tex_y >= img->height)
-			ray->tex_x = img->height - 1;
+			ray->tex_y = img->height - 1;
 		dst[y * WIDTH + ray->i] = ((int *)img->addr)[ray->tex_y * img->width
 			+ ray->tex_x];
 		ray->tex_pos += step;

@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 13:06:04 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/20 18:53:28 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/21 23:03:26 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	load_xpm(t_data *data, t_img *img, char *path)
 void	load_all_textures(t_data *data)
 {
 	load_xpm(data, &data->textures.north, "textures/north.xpm");
-	// load_xpm(data, &data->textures.south, "textures/south.xpm");
+	load_xpm(data, &data->textures.south, "textures/south.xpm");
 	// load_xpm(data, &data->textures.east, "textures/east.xpm");
 	// load_xpm(data, &data->textures.west, "textures/west.xpm");
 }

@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/20 20:10:59 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/21 23:35:22 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ int	game_loop(t_data *data)
 	// if (data->player.turn_right)
 	// 	rotate_player(data, data->player.rot_speed);
 	draw_buffer(data);
+	// printf("Player Position: (%f, %f)\n", data->player.pos_x,
+	// 	data->player.pos_y);
 	return (0);
 }

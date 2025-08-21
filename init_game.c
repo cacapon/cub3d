@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:15:23 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/20 18:53:04 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/21 23:33:01 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 // player構造体の初期化
 static void	init_player(t_data *data)
 {
-	data->player.pos_x = 2;
-	data->player.pos_y = 5;
+	data->player.pos_x = 2.5;
+	data->player.pos_y = 4.5;
 	data->player.dir_x = 0.0;
 	data->player.dir_y = -0.1;
 	data->player.move_speed = 0.05;
