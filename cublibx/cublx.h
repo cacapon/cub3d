@@ -6,12 +6,15 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/20 07:15:35 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/22 19:45:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBLX_H
 # define CUBLX_H
+
+// using std function
+// malloc
 
 // include size_t
 # include <stddef.h>
