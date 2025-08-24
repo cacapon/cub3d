@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 16:48:35 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 17:16:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_cublx	*cublx_new(int w, int h, char *title);
 int		cublx_del(t_cublx **cublx);
 void	cublx_set_hooks(t_cublx *cublx, int (*update)(t_cublx *),
 			int (*draw)(t_cublx *), int (*destructor)(t_cublx *));
+void	cublx_run(t_cublx *cublx);
 
 // private
 void	*_cublx_calloc(size_t count, size_t size);

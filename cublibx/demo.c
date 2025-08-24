@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:00:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 15:20:21 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 17:17:19 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @brief Destructor for erasing user-defined dynamic allocation data.
+ * 
+ * @param cublx 
+ * @return int 
+ */
 static int dest(t_cublx *cublx)
 {
 	return (0);	
@@ -41,7 +47,7 @@ int	main(void)
 
 	cublx = cublx_new(100, 100, "test");
 	cublx_set_hooks(cublx, update, draw, dest);
-	mlx_loop(cublx->mlx);
+	cublx_run(cublx);
 	cublx_del(&cublx);
 	return (0);
 }
