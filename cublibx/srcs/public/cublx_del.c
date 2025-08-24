@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:11:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 16:44:27 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 17:24:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ static void	_free_mlx(void **mlx)
 	free(*mlx);
 	*mlx = NULL;
 }
+
 /**
  * @brief Delete the cublx instance.
- * 
- * @param culbx 
- * @return int 
+ *
+ * @param culbx
+ * @return int
  */
 int	cublx_del(t_cublx **culbx)
 {
