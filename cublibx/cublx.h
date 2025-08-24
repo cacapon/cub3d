@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 17:22:36 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 17:31:56 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@ using type
 
 typedef struct s_cublx	t_cublx;
 
+typedef struct s_cublx_img
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+}				t_cublx_img;
+
 typedef struct s_cub_user
 {
 	int			(*update)(t_cublx *);
@@ -43,6 +54,7 @@ typedef struct s_cublx
 	int			_key_state[KEY_MAX];
 	int			_key_just_pressed[KEY_MAX];
 	int			(*btn)(t_cublx *self, int key_code);
+	int			(*btnp)(t_cublx *self, int key_code);
 }				t_cublx;
 
 // public
@@ -60,5 +72,6 @@ void	_cublx_key_just_pressed_init(t_cublx *self);
 int		_cublx_key_pressed(int keycode, t_cublx *cublx);
 int		_cublx_key_released(int keycode, t_cublx *cublx);
 int		_cublx_btn(t_cublx *self, int keycode);
+int		_cublx_btnp(t_cublx *self, int keycode);
 int		_cublx_loop(t_cublx *cublx);
 #endif

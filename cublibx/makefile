@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/20 07:19:09 by ttsubo            #+#    #+#              #
-#    Updated: 2025/08/24 17:26:09 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/08/24 17:33:06 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ OBJ_PUB_DIR		= $(OBJ_DIR)/public
 PRI_SRCS_DIR	= srcs/private
 PUB_SRCS_DIR	= srcs/public
 
-PRI_SRCS = 	_cublx_calloc.c _cublx_btn.c _cublx_loop.c \
+PRI_SRCS = 	_cublx_calloc.c _cublx_loop.c \
+			_cublx_btn.c _cublx_btnp.c \
 			_cublx_key_just_pressed_init.c _cublx_key_state_init.c \
 			_cublx_key_pressed.c _cublx_key_released.c 
 PUB_SRCS = cublx_del.c cublx_new.c cublx_run.c cublx_set_hooks.c cublx_set_user_param.c

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:00:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 17:23:02 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 17:34:14 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ static int	draw(t_cublx *cublx)
 
 static int	update(t_cublx *cublx)
 {
-	if (cublx->btn(cublx, XK_q))
+	if (cublx->btnp(cublx, XK_q))
 	{
 		printf("push q btn\n");
 		cublx_del(&cublx);
 		exit(0);
 	}
+	if (cublx->btn(cublx, XK_a))
+		printf("pressing a btn\n");
 	return (0);
 }
 

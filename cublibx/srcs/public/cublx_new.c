@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:04:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 17:23:39 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 17:34:45 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_cublx	*cublx_new(int w, int h, char *title)
 	if (_allocate_cublx_user(cublx) != 0)
 		return (cublx_del(&cublx), NULL);
 	cublx->btn = _cublx_btn;
+	cublx->btnp = _cublx_btnp;
 	_cublx_key_state_init(cublx);
 	_cublx_key_just_pressed_init(cublx);
 	return (cublx);
