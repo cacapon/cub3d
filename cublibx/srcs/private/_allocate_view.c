@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _cublx_loop.c                                      :+:      :+:    :+:   */
+/*   _allocate_view.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 21:19:03 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 18:25:30 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/08/24 18:02:08 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/08/24 18:26:14 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cublx.h"
 
-int	_cublx_loop(t_cublx *cublx)
+int	_allocate_view(t_cublx_img *view, t_cublx *cublx, int w, int h)
 {
-	cublx->user->update(cublx);
-	cublx->user->draw(cublx);
-	mlx_put_image_to_window(
-		cublx->mlx, cublx->win,
-		cublx->main_view[cublx->view_switch].img,
-		0, 0);
-	cublx->view_switch += (cublx->view_switch + 1) % 2;
-	_cublx_key_just_pressed_init(cublx);
+	if (!cublx)
+		return (1);
+	view->img = mlx_new_image(cublx->mlx, w, h);
+	if (!view->img)
+		return (1);
+	view->addr = mlx_get_data_addr(
+			view->img,
+			&view->bits_per_pixel,
+			&view->line_length,
+			&view->endian);
+	if (!view->addr)
+		return (1);
 	return (0);
 }

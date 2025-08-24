@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 17:31:56 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 18:34:14 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,12 @@ typedef struct s_cublx
 {
 	void		*mlx;
 	void		*win;
+	t_cublx_img	main_view[2];
 	t_cub_user	*user;
+	int			view_switch;
 	int			_key_state[KEY_MAX];
 	int			_key_just_pressed[KEY_MAX];
+	int			(*pset)(t_cublx *self, int x, int y, int color);
 	int			(*btn)(t_cublx *self, int key_code);
 	int			(*btnp)(t_cublx *self, int key_code);
 }				t_cublx;
@@ -67,10 +70,12 @@ void	cublx_run(t_cublx *cublx);
 
 // private
 void	*_cublx_calloc(size_t count, size_t size);
+int		_allocate_view(t_cublx_img *view, t_cublx *cublx, int w, int h);
 void	_cublx_key_state_init(t_cublx *self);
 void	_cublx_key_just_pressed_init(t_cublx *self);
 int		_cublx_key_pressed(int keycode, t_cublx *cublx);
 int		_cublx_key_released(int keycode, t_cublx *cublx);
+int		_cublx_pset(t_cublx *self, int x, int y, int color);
 int		_cublx_btn(t_cublx *self, int keycode);
 int		_cublx_btnp(t_cublx *self, int keycode);
 int		_cublx_loop(t_cublx *cublx);
