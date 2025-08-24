@@ -27,6 +27,7 @@ PRI_SRCS_DIR	= srcs/private
 PUB_SRCS_DIR	= srcs/public
 
 PRI_SRCS = 	_cublx_calloc.c _cublx_btn.c _cublx_loop.c \
+			_allocate_mlx.c _allocate_mlx_win.c _allocate_cublx_user.c \
 			_cublx_key_just_pressed_init.c _cublx_key_state_init.c \
 			_cublx_key_pressed.c _cublx_key_released.c 
 PUB_SRCS = cublx_del.c cublx_new.c cublx_hook.c
