@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:00:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 17:34:14 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 17:36:06 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static int	update(t_cublx *cublx)
 
 int	main(void)
 {
-	t_cublx *cublx;
-	void *param;
+	t_cublx	*cublx;
+	void	*param;
 
 	param = NULL;
 	cublx = cublx_new(100, 100, "test");
