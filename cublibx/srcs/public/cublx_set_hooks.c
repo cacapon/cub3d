@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cublx_hook.c                                       :+:      :+:    :+:   */
+/*   cublx_set_hooks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 21:30:20 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 07:06:49 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 16:04:35 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	cublx_set_hooks(
 	t_cublx *cublx,
-	int (*update)(void *),
-	int (*draw)(void *),
-	int (*destructor)(void *)
+	int (*update)(t_cublx *),
+	int (*draw)(t_cublx *),
+	int (*destructor)(t_cublx *)
 )
 {
 	cublx->user->update = update;
