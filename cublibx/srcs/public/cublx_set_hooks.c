@@ -24,5 +24,5 @@ void	cublx_set_hooks(
 	cublx->user->destructor = destructor;
 	mlx_loop_hook(cublx->mlx, _cublx_loop, cublx);
 	mlx_hook(cublx->win, 2, (1L << 0), _cublx_key_pressed, cublx);
-	mlx_hook(cublx->win, 3, (1L << 0), _cublx_key_released, cublx);
+	mlx_hook(cublx->win, 3, (1L << 1), _cublx_key_released, cublx);
 }
