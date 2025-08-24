@@ -6,13 +6,13 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 21:30:20 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/22 21:43:03 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 07:06:49 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cublx.h"
 
-void	cublx_hook(
+void	cublx_set_hooks(
 	t_cublx *cublx,
 	int (*update)(void *),
 	int (*draw)(void *),
