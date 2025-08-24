@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:00:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 18:36:19 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/24 18:37:36 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	update(t_cublx *cublx)
 		exit(0);
 	}
 	if (cublx->btn(cublx, XK_a))
-		cublx->pset(cublx, 10,10, 0xFFFFFF);
+		cublx->pset(cublx, 10, 10, 0xFFFFFF);
 	return (0);
 }
 
