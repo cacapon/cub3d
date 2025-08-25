@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 18:08:13 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/25 18:14:10 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CUB3D_H
 
 # include "cublx.h"
-# include "../minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
