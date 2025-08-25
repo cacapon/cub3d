@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 17:48:57 by yookamot          #+#    #+#              #
-#    Updated: 2025/08/25 18:14:27 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/08/25 18:15:19 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
+	$(MAKE) -C $(CUBLX_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
