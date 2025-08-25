@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+         #
+#    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 17:48:57 by yookamot          #+#    #+#              #
-#    Updated: 2025/08/20 21:03:30 by yookamot         ###   ########.fr        #
+#    Updated: 2025/08/25 16:42:31 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,11 @@ SRCS = draw_vertical_line.c \
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc
-CFLAGS = -I./minilibx-linux
-LDFLAGS = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lz -g
+CFLAGS = -I./minilibx-linux -I./cublibx
+LDFLAGS = -L./cublibx -L./minilibx-linux -lcublx -lmlx -lXext -lX11 -lm -lz -g
 
+CUBLX_DIR = ./cublibx
+CUBLX = $(CUBLX_DIR)/libcublx.a
 MLX_DIR = ./minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
 
@@ -35,7 +37,10 @@ all: $(NAME)
 $(MLX):
 	$(MAKE) -C $(MLX_DIR)
 
-$(NAME): $(MLX) $(OBJS)
+$(CUBLX):
+	$(MAKE) -C $(CUBLX_DIR)
+
+$(NAME): $(MLX) $(CUBLX) $(OBJS)
 	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 %.o: %.c
