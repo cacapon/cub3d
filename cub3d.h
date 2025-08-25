@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/21 23:15:54 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/22 22:17:30 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define WIDTH 1048
 # define HEIGHT 768
 # define PI 3.14159265358979323846
-# define TILE_SIZE 64
 
 typedef struct s_img
 {
