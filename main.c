@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:12 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:50:01 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/25 18:07:24 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,7 @@ int	main(void)
 		return (1);
 	read_map(data);
 	cublx = cublx_new(WIDTH, HEIGHT, "cub3D");
-	cublx->mlx = mlx_init();
-	if (!cublx->mlx)
-		return (free_array(data->map), free(data), 1);
 	init_game(data, cublx);
-	cublx->win = mlx_new_window(cublx->mlx, WIDTH, HEIGHT, "cub3D");
-	if (!cublx->win)
-		exit_game(data, 1, cublx);
 	load_all_textures(data, cublx);
 	cublx_set_user_param(cublx, data);
 	cublx_set_hooks(cublx, update, draw, dest);
