@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/22 21:33:22 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:22:03 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	display_player_position(t_data *data)
 // 1フレームごとに実行されるループ関数
 int	game_loop(t_data *data)
 {
-	if (data->player.move_forward)
+	if (data->player.move_forward && !data->front_lock)
 		move_player(data, data->player.move_speed);
 	if (data->player.move_backward)
 		move_player(data, -data->player.move_speed);
