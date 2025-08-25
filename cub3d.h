@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:08:53 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/25 18:08:13 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ typedef struct s_player
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
 	t_textures	textures;
 	int			floor_color;
 	int			ceiling_color;
