@@ -6,13 +6,11 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:21:15 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:22:33 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/25 18:39:16 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define STEP 0.007
 
 static void	get_distance_to_wall(t_ray *ray)
 {
@@ -46,9 +44,7 @@ static void	get_wall_height(t_ray *ray)
 	else
 		projection_plane_distance = WIDTH / (2.0 * tan(FOV * PI / 180.0));
 	ray->wall_height = 1.0 * projection_plane_distance / ray->distance;
-	ray->data->front_lock = 0;
-	if (ray->wall_height >= HEIGHT)
-		ray->data->front_lock = 1;
+	set_move_lock(ray, projection_plane_distance);
 }
 
 static void	get_tex_x(t_ray *ray, t_img *img)

@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:15:23 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:19:01 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/25 18:12:12 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	init_game(t_data *data)
 	data->textures.west.img = NULL;
 	data->floor_color = 16711680;
 	data->ceiling_color = 255;
-	data->front_lock;
+	data->front_lock = 0;
+	data->left_lock = 0;
+	data->right_lock = 0;
 	init_player(data);
 	init_buffer(data);
 }

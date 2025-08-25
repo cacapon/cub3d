@@ -6,20 +6,22 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:22:03 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/25 18:54:16 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // playerの座標更新
-static void	move_player(t_data *data, double speed)
+static void	move_player(t_data *data, double dir_x, double dir_y)
 {
+	double	speed;
 	double	new_x;
 	double	new_y;
 
-	new_x = data->player.pos_x + data->player.dir_x * speed;
-	new_y = data->player.pos_y + data->player.dir_y * speed;
+	speed = data->player.move_speed;
+	new_x = data->player.pos_x + dir_x * speed;
+	new_y = data->player.pos_y + dir_y * speed;
 	if (data->map[(int)data->player.pos_y][(int)new_x] != '1'
 		&& data->map[(int)data->player.pos_y][(int)new_x] != '2')
 		data->player.pos_x = new_x;
@@ -57,13 +59,13 @@ void	display_player_position(t_data *data)
 int	game_loop(t_data *data)
 {
 	if (data->player.move_forward && !data->front_lock)
-		move_player(data, data->player.move_speed);
+		move_player(data, data->player.dir_x, data->player.dir_y);
 	if (data->player.move_backward)
-		move_player(data, -data->player.move_speed);
-	// if (data->player.strafe_left)
-	// 	strafe_player(data, -data->player.move_speed);
-	// if (data->player.strafe_right)
-	// 	strafe_player(data, data->player.move_speed);
+		move_player(data, data->player.dir_x, -data->player.dir_y);
+	if (data->player.strafe_left && !data->left_lock)
+		move_player(data, data->player.dir_y, -data->player.dir_x);
+	if (data->player.strafe_right && !data->right_lock)
+		move_player(data, -data->player.dir_y, data->player.dir_x);
 	// if (data->player.turn_left)
 	// 	rotate_player(data, -data->player.rot_speed);
 	// if (data->player.turn_right)
