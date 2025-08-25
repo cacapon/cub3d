@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:21:15 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/22 22:17:00 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/25 18:42:34 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	get_tex_x(t_ray *ray, t_img *img)
 	ray->tex_x = (int)(wall_x * img->width);
 }
 
-void	ray_casting(t_data *data, int i)
+void	ray_casting(t_data *data, int i, t_cublx *cublx)
 {
 	t_ray	ray;
 
@@ -89,11 +89,11 @@ void	ray_casting(t_data *data, int i)
 		get_tex_x(&ray, &data->textures.north);
 	else
 		get_tex_x(&ray, &data->textures.south);
-	draw_ceiling_in_vertical_line(&ray);
+	draw_ceiling_in_vertical_line(&ray, cublx);
 	//フラグに応じてどのテクスチャを使うか条件分岐
 	if (ray.data->map[(int)ray.pos_y][(int)ray.pos_x] == '1')
-		draw_wall_in_vertical_line(&ray, &data->textures.north);
+		draw_wall_in_vertical_line(&ray, &data->textures.north, cublx);
 	else
-		draw_wall_in_vertical_line(&ray, &data->textures.south);
-	draw_floor_in_vertical_line(&ray);
+		draw_wall_in_vertical_line(&ray, &data->textures.south, cublx);
+	draw_floor_in_vertical_line(&ray, cublx);
 }

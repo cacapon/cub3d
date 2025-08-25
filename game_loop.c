@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:04:43 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/25 18:31:48 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	draw_buffer(t_cublx *cublx)
 	data = cublx->user->param;
 	while (i < WIDTH)
 	{
-		ray_casting(data, i);
+		ray_casting(data, i, cublx);
 		i++;
 	}
 	mlx_put_image_to_window(cublx->mlx, cublx->win, data->front_buffer.img, 0, 0);

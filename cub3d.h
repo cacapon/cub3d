@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 18:14:10 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/25 18:41:01 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ int				destroy_window(t_cublx *cublx);
 void			exit_game(t_data *data, int status, t_cublx *cublx);
 int				key_press(int keycode, t_data *data);
 int				key_release(int keycode, t_data *data);
-void			ray_casting(t_data *data, int i);
-void			draw_ceiling_in_vertical_line(t_ray *ray);
-void			draw_wall_in_vertical_line(t_ray *ray, t_img *img);
-void			draw_floor_in_vertical_line(t_ray *ray);
+void			ray_casting(t_data *data, int i, t_cublx *cublx);
+void			draw_ceiling_in_vertical_line(t_ray *ray, t_cublx *cublx);
+void			draw_wall_in_vertical_line(t_ray *ray, t_img *img, t_cublx *cublx);
+void			draw_floor_in_vertical_line(t_ray *ray, t_cublx *cublx);
 
 void	draw_buffer(t_cublx *cublx);
 void	move_player(t_data *data, double speed);
