@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/22 21:33:22 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:04:43 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // playerの座標更新
-static void	move_player(t_data *data, double speed)
+void	move_player(t_data *data, double speed)
 {
 	double	new_x;
 	double	new_y;
@@ -29,20 +29,22 @@ static void	move_player(t_data *data, double speed)
 }
 
 // レイキャスティングを行った上でバッファをウィンドウに表示
-static void	draw_buffer(t_data *data)
+void	draw_buffer(t_cublx *cublx)
 {
 	int	i;
+	t_data	*data;
 
 	i = 0;
+	data = cublx->user->param;
 	while (i < WIDTH)
 	{
 		ray_casting(data, i);
 		i++;
 	}
-	mlx_put_image_to_window(data->mlx, data->win, data->front_buffer.img, 0, 0);
+	mlx_put_image_to_window(cublx->mlx, cublx->win, data->front_buffer.img, 0, 0);
 }
 
-void	display_player_position(t_data *data)
+void	display_player_position(t_data *data, t_cublx *cublx)
 {
 	char	buffer[100];
 
@@ -50,12 +52,15 @@ void	display_player_position(t_data *data)
 	sprintf(buffer, "Player pos: x = %.2f, y = %.2f", data->player.pos_x,
 		data->player.pos_y);
 	// 黒で描画 (色は16進で指定: 0xRRGGBB)
-	mlx_string_put(data->mlx, data->win, 10, 20, 0xFF0000, buffer);
+	mlx_string_put(cublx->mlx, cublx->win, 10, 20, 0xFF0000, buffer);
 }
 
 // 1フレームごとに実行されるループ関数
-int	game_loop(t_data *data)
+int	game_loop(t_cublx *cublx)
 {
+	t_data	*data;
+
+	data = cublx->user->param;
 	if (data->player.move_forward)
 		move_player(data, data->player.move_speed);
 	if (data->player.move_backward)
@@ -68,9 +73,9 @@ int	game_loop(t_data *data)
 	// 	rotate_player(data, -data->player.rot_speed);
 	// if (data->player.turn_right)
 	// 	rotate_player(data, data->player.rot_speed);
-	draw_buffer(data);
+	draw_buffer(cublx);
 	// printf("Player Position: (%f, %f)\n", data->player.pos_x,
 	// 	data->player.pos_y);
-	display_player_position(data);
+	display_player_position(data, cublx);
 	return (0);
 }

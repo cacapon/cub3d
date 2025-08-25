@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:00:33 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/20 18:56:20 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:10:50 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
-		exit_game(data, 0);
+		;//exit_game(data, 0);
 	else if (keycode == XK_w)
 		data->player.move_forward = 1;
 	else if (keycode == XK_s)
@@ -36,7 +36,7 @@ int	key_press(int keycode, t_data *data)
 int	key_release(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
-		exit_game(data, 0);
+		;//exit_game(data, 0);
 	else if (keycode == XK_w)
 		data->player.move_forward = 0;
 	else if (keycode == XK_s)

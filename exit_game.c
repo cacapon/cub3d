@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:13:16 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/19 15:59:02 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:01:23 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	destroy_window(t_data *data)
+int	destroy_window(t_cublx *cublx)
 {
-	exit_game(data, 0);
+	exit_game(cublx->user->param, 0, cublx);
 }
 
-static void	cleanup_textures(t_data *data)
+static void	cleanup_textures(t_data *data, t_cublx *cublx)
 {
 	if (data->textures.north.img)
-		mlx_destroy_image(data->mlx, data->textures.north.img);
+		mlx_destroy_image(cublx->mlx, data->textures.north.img);
 	if (data->textures.south.img)
-		mlx_destroy_image(data->mlx, data->textures.south.img);
+		mlx_destroy_image(cublx->mlx, data->textures.south.img);
 	if (data->textures.east.img)
-		mlx_destroy_image(data->mlx, data->textures.east.img);
+		mlx_destroy_image(cublx->mlx, data->textures.east.img);
 	if (data->textures.west.img)
-		mlx_destroy_image(data->mlx, data->textures.west.img);
+		mlx_destroy_image(cublx->mlx, data->textures.west.img);
 }
 
 void	free_array(char **array)
@@ -42,28 +42,28 @@ void	free_array(char **array)
 	free(array);
 }
 
-static void	cleanup_buffers(t_data *data)
+static void	cleanup_buffers(t_data *data, t_cublx *cublx)
 {
 	if (data->front_buffer.img)
-		mlx_destroy_image(data->mlx, data->front_buffer.img);
+		mlx_destroy_image(cublx->mlx, data->front_buffer.img);
 	if (data->back_buffer.img)
-		mlx_destroy_image(data->mlx, data->back_buffer.img);
+		mlx_destroy_image(cublx->mlx, data->back_buffer.img);
 }
 
-void	exit_game(t_data *data, int status)
+void	exit_game(t_data *data, int status, t_cublx *cublx)
 {
 	if (!data)
 		exit(status);
-	cleanup_textures(data);
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
+	cleanup_textures(data, cublx);
+	if (cublx->win)
+		mlx_destroy_window(cublx->mlx, cublx->win);
 	if (data->map)
 		free_array(data->map);
-	cleanup_buffers(data);
-	if (data->mlx)
+	cleanup_buffers(data, cublx);
+	if (cublx->mlx)
 	{
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
+		mlx_destroy_display(cublx->mlx);
+		free(cublx->mlx);
 	}
 	free(data);
 	exit(status);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:15:23 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/21 23:33:01 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:06:54 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ static void	init_player(t_data *data)
 }
 
 // bufferの初期化
-static void	init_buffer(t_data *data)
+static void	init_buffer(t_data *data, t_cublx *cublx)
 {
-	data->front_buffer.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->front_buffer.img = mlx_new_image(cublx->mlx, WIDTH, HEIGHT);
 	data->front_buffer.addr = mlx_get_data_addr(data->front_buffer.img,
 			&data->front_buffer.bits_per_pixel, &data->front_buffer.line_length,
 			&data->front_buffer.endian);
 	data->back_buffer.img = NULL;
 	data->back_buffer.addr = NULL;
-	// data->back_buffer.img = mlx_new_image(data->mlx, WIDTH,
+	// data->back_buffer.img = mlx_new_image(cublx->mlx, WIDTH,
 	// 		HEIGHT);
 	// data->back_buffer.addr = mlx_get_data_addr(data->back_buffer.img,
 	// 		&data->back_buffer.bits_per_pixel, &data->back_buffer.line_length,
@@ -48,7 +48,7 @@ static void	init_buffer(t_data *data)
 }
 
 // data構造体の初期化
-void	init_game(t_data *data)
+void	init_game(t_data *data, t_cublx *cublx)
 {
 	data->textures.north.img = NULL;
 	data->textures.south.img = NULL;
@@ -57,5 +57,5 @@ void	init_game(t_data *data)
 	data->floor_color = 16711680;
 	data->ceiling_color = 255;
 	init_player(data);
-	init_buffer(data);
+	init_buffer(data, cublx);
 }

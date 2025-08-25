@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 16:38:25 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/25 17:08:53 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ typedef struct s_ray
 
 void			read_map(t_data *data);
 void			free_array(char **array);
-void			init_game(t_data *data);
-void			load_all_textures(t_data *data);
-int				game_loop(t_data *data);
-int				destroy_window(t_data *data);
-void			exit_game(t_data *data, int status);
+void			init_game(t_data *data, t_cublx *cublx);
+void			load_all_textures(t_data *data, t_cublx *cublx);
+int				game_loop(t_cublx *cublx);
+int				destroy_window(t_cublx *cublx);
+void			exit_game(t_data *data, int status, t_cublx *cublx);
 int				key_press(int keycode, t_data *data);
 int				key_release(int keycode, t_data *data);
 void			ray_casting(t_data *data, int i);
@@ -109,4 +109,7 @@ void			draw_ceiling_in_vertical_line(t_ray *ray);
 void			draw_wall_in_vertical_line(t_ray *ray, t_img *img);
 void			draw_floor_in_vertical_line(t_ray *ray);
 
+void	draw_buffer(t_cublx *cublx);
+void	move_player(t_data *data, double speed);
+void	display_player_position(t_data *data, t_cublx *cublx);
 #endif
