@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/19 14:48:31 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/22 22:17:30 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+# define FOV 90
+# define WIDTH 1048
+# define HEIGHT 768
+# define PI 3.14159265358979323846
 
 typedef struct s_img
 {
@@ -48,14 +54,21 @@ typedef struct s_player
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	double		move_speed;
+	double		rot_speed;
+	int			move_forward;
+	int			move_backward;
+	int			strafe_left;
+	int			strafe_right;
+	int			turn_left;
+	int			turn_right;
+	double		angle;
 }				t_player;
 
 typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	int			win_width;
-	int			win_height;
 	t_textures	textures;
 	int			floor_color;
 	int			ceiling_color;
@@ -65,5 +78,34 @@ typedef struct s_data
 	char		**map;
 	t_player	player;
 }				t_data;
+
+typedef struct s_ray
+{
+	int			i;
+	double		dir_x;
+	double		dir_y;
+	double		pos_x;
+	double		pos_y;
+	double		distance;
+	double		wall_height;
+	t_data		*data;
+	int			tex_x;
+	int			tex_y;
+	double		tex_pos;
+}				t_ray;
+
+void			read_map(t_data *data);
+void			free_array(char **array);
+void			init_game(t_data *data);
+void			load_all_textures(t_data *data);
+int				game_loop(t_data *data);
+int				destroy_window(t_data *data);
+void			exit_game(t_data *data, int status);
+int				key_press(int keycode, t_data *data);
+int				key_release(int keycode, t_data *data);
+void			ray_casting(t_data *data, int i);
+void			draw_ceiling_in_vertical_line(t_ray *ray);
+void			draw_wall_in_vertical_line(t_ray *ray, t_img *img);
+void			draw_floor_in_vertical_line(t_ray *ray);
 
 #endif
