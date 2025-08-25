@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:12 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:10:06 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/25 17:50:01 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int update(t_cublx *cublx)
 		move_player(data, data->player.move_speed);
 	if (cublx->btn(cublx, XK_s))
 		move_player(data, -data->player.move_speed);
+	if (cublx->btnp(cublx, XK_Escape))
+		exit_game(data, cublx, 0);
 	return (0);
 }
 
@@ -59,11 +61,8 @@ int	main(void)
 	load_all_textures(data, cublx);
 	cublx_set_user_param(cublx, data);
 	cublx_set_hooks(cublx, update, draw, dest);
-	// mlx_loop_hook(cublx->mlx, game_loop, data);
 	mlx_hook(cublx->win, DestroyNotify, 0, destroy_window, data);
-	//mlx_hook(cublx->win, 2, 1L << 0, key_press, data);
-	//mlx_hook(cublx->win, 3, 1L << 1, key_release, data);
 	cublx_run(cublx);
-	mlx_loop(cublx->mlx);
+	cublx_del(&cublx);
 	return (0);
 }
