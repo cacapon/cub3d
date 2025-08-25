@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:21:15 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/22 22:17:00 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:32:31 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static void	get_tex_x(t_ray *ray, t_img *img)
 	if ((int)prev_x != (int)ray->pos_x)
 	{
 		wall_x = ray->pos_y - floor(ray->pos_y);
+		if (ray->pos_x < prev_x)
+			wall_x = 1.0 - wall_x;
 		hit_vertical = 1;
 	}
 	else
