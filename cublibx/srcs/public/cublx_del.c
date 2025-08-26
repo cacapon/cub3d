@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:11:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 18:32:13 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:17:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int	cublx_del(t_cublx **culbx)
 	if (_cublx->user && _cublx->user->destructor)
 		_cublx->user->destructor(_cublx);
 	_free_cublx_user(&_cublx->user);
-	_free_view(_cublx->mlx, &_cublx->main_view[0]);
-	_free_view(_cublx->mlx, &_cublx->main_view[1]);
+	_free_view(_cublx->mlx, &_cublx->main_v.view[0]);
+	_free_view(_cublx->mlx, &_cublx->main_v.view[1]);
 	_free_mlx_win(_cublx->mlx, &_cublx->win);
 	_free_mlx(&_cublx->mlx);
 	free(_cublx);

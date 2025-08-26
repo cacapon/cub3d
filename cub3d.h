@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:20:24 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/26 10:54:29 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../minilibx-linux/mlx.h"
+# include "cublx.h"
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
@@ -65,8 +65,6 @@ typedef struct s_player
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
 	t_textures	textures;
 	int			floor_color;
 	int			ceiling_color;
@@ -96,16 +94,19 @@ typedef struct s_ray
 
 void			read_map(t_data *data);
 void			free_array(char **array);
-void			init_game(t_data *data);
-void			load_all_textures(t_data *data);
-int				game_loop(t_data *data);
-int				destroy_window(t_data *data);
-void			exit_game(t_data *data, int status);
+void			init_game(t_data *data, t_cublx *cublx);
+void			load_all_textures(t_data *data, t_cublx *cublx);
+int				game_loop(t_cublx *cublx);
+int				destroy_window(t_cublx *cublx);
+void			exit_game(t_data *data, int status, t_cublx *cublx);
 int				key_press(int keycode, t_data *data);
 int				key_release(int keycode, t_data *data);
-void			ray_casting(t_data *data, int i);
-void			draw_ceiling_in_vertical_line(t_ray *ray);
-void			draw_wall_in_vertical_line(t_ray *ray, t_img *img);
-void			draw_floor_in_vertical_line(t_ray *ray);
+void			ray_casting(t_data *data, int i, t_cublx *cublx);
+void			draw_ceiling_in_vertical_line(t_ray *ray, t_cublx *cublx);
+void			draw_wall_in_vertical_line(t_ray *ray, t_img *img, t_cublx *cublx);
+void			draw_floor_in_vertical_line(t_ray *ray, t_cublx *cublx);
 
+void	draw_buffer(t_cublx *cublx);
+void	move_player(t_data *data, double speed);
+void	display_player_position(t_data *data, t_cublx *cublx);
 #endif

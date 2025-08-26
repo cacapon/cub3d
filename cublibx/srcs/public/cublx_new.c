@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:04:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 18:36:48 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:51:20 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static int	_allocate_views(t_cublx *cublx, int w, int h)
 {
 	if (!cublx)
 		return (1);
-	_allocate_view(&cublx->main_view[0], cublx, w, h);
-	_allocate_view(&cublx->main_view[1], cublx, w, h);
-	if (!cublx->main_view[0].img || !cublx->main_view[1].img)
+	_allocate_view(&cublx->main_v.view[0], cublx, w, h);
+	_allocate_view(&cublx->main_v.view[1], cublx, w, h);
+	if (!cublx->main_v.view[0].img || !cublx->main_v.view[1].img)
 		return (1);
 	return (0);
 }
@@ -66,12 +66,12 @@ t_cublx	*cublx_new(int w, int h, char *title)
 		return (cublx_del(&cublx), NULL);
 	if (_allocate_cublx_user(cublx) != 0)
 		return (cublx_del(&cublx), NULL);
-	if (_allocate_views(cublx, h, w) != 0)
+	if (_allocate_views(cublx, w, h) != 0)
 		return (cublx_del(&cublx), NULL);
 	cublx->btn = _cublx_btn;
 	cublx->btnp = _cublx_btnp;
 	cublx->pset = _cublx_pset;
-	cublx->view_switch = 0;
+	cublx->main_v.sw = 0;
 	_cublx_key_state_init(cublx);
 	_cublx_key_just_pressed_init(cublx);
 	return (cublx);
