@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 18:55:03 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:02:55 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define HEIGHT 768
 # define PI 3.14159265358979323846
 # define STEP 0.007
-# define FRONT 0
+# define FRONT 0 //それぞれプレイヤーにとっての方角
 # define BACK 1
 # define LEFT 2
 # define RIGHT 3

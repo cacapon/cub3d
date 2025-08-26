@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:21:15 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 18:38:56 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:08:03 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,23 @@ static void	get_tex_x(t_ray *ray, t_img *img)
 void	ray_casting(t_data *data, int i)
 {
 	t_ray	ray;
+	t_img	*tex_img;
 
 	ray.data = data;
 	ray.i = i;
 	get_distance_to_wall(&ray);
 	get_wall_height(&ray);
-	if (ray.data->map[(int)ray.pos_y][(int)ray.pos_x] == '1')
-		get_tex_x(&ray, &data->textures.north);
-	else
-		get_tex_x(&ray, &data->textures.south);
+	tex_img = &data->textures.south;
+	if (ray.hit_wall == FRONT)
+		tex_img = &data->textures.south;
+	else if (ray.hit_wall == BACK)
+		tex_img = &data->textures.north;
+	else if (ray.hit_wall == LEFT)
+		tex_img = &data->textures.east;
+	else if (ray.hit_wall == RIGHT)
+		tex_img = &data->textures.west;
+	get_tex_x(&ray, tex_img);
 	draw_ceiling_in_vertical_line(&ray);
-	//フラグに応じてどのテクスチャを使うか条件分岐
-	if (ray.data->map[(int)ray.pos_y][(int)ray.pos_x] == '1')
-		draw_wall_in_vertical_line(&ray, &data->textures.north);
-	else
-		draw_wall_in_vertical_line(&ray, &data->textures.south);
+	draw_wall_in_vertical_line(&ray, tex_img);
 	draw_floor_in_vertical_line(&ray);
 }

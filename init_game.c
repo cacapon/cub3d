@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:15:23 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 18:12:12 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/26 19:55:05 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_player(t_data *data)
 	data->player.pos_y = 4.5;
 	data->player.dir_x = 0.0;
 	data->player.dir_y = -0.1;
-	data->player.move_speed = 0.05;
+	data->player.move_speed = 0.075;
 	data->player.rot_speed = 0.03;
 	data->player.move_forward = 0;
 	data->player.move_backward = 0;
