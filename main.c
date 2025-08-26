@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:12 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 19:00:26 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:01:59 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int draw(t_cublx *cublx)
 	t_data	*data;
 
 	data = cublx->user->param;
-ｓ	draw_buffer(cublx);
+	draw_buffer(cublx);
 	display_player_position(data, cublx);
 	return (0);
 }
