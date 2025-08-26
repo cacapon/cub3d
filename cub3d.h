@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 18:41:01 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:54:29 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ typedef struct s_player
 	double		pos_y;
 	double		dir_x;
 	double		dir_y;
-	double		plane_x;
-	double		plane_y;
 	double		move_speed;
 	double		rot_speed;
 	int			move_forward;
@@ -75,11 +73,13 @@ typedef struct s_data
 	int			current_buffer;
 	char		**map;
 	t_player	player;
+	int			front_lock;
 }				t_data;
 
 typedef struct s_ray
 {
 	int			i;
+	double		angle;
 	double		dir_x;
 	double		dir_y;
 	double		pos_x;

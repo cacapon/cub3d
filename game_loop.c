@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 10:29:21 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:55:08 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	game_loop(t_cublx *cublx)
 	t_data	*data;
 
 	data = cublx->user->param;
-	if (data->player.move_forward)
+	if (data->player.move_forward && !data->front_lock)
 		move_player(data, data->player.move_speed);
 	if (data->player.move_backward)
 		move_player(data, -data->player.move_speed);

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:15:23 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:06:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:55:18 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	init_game(t_data *data, t_cublx *cublx)
 	data->textures.west.img = NULL;
 	data->floor_color = 16711680;
 	data->ceiling_color = 255;
+	data->front_lock;
 	init_player(data);
 	init_buffer(data, cublx);
 }
