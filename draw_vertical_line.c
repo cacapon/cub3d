@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:46:39 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 18:48:45 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:25:48 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,16 @@ void	draw_ceiling_in_vertical_line(t_ray *ray, t_cublx *cublx)
 {
 	int	start;
 	int	end;
-	int	*dst;
 	int	y;
 
 	start = 0;
 	end = (int)((HEIGHT - ray->wall_height) / 2);
 	if (end < 0)
 		end = 0;
-	dst = (int *)ray->data->front_buffer.addr;
 	y = 0;
 	while (y < end)
 	{
 		cublx->pset(cublx, ray->i, y, ray->data->ceiling_color);
-		//dst[y * WIDTH + ray->i] = ray->data->ceiling_color;
 		y++;
 	}
 }

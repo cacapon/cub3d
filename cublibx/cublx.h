@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 18:34:14 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:15:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct s_cublx_img
 	int			height;
 }				t_cublx_img;
 
+typedef	struct s_cublx_view
+{
+	t_cublx_img	view[2];
+	int			sw;
+} 				t_cublx_view;
+
+
 typedef struct s_cub_user
 {
 	int			(*update)(t_cublx *);
@@ -48,16 +55,15 @@ typedef struct s_cub_user
 
 typedef struct s_cublx
 {
-	void		*mlx;
-	void		*win;
-	t_cublx_img	main_view[2];
-	t_cub_user	*user;
-	int			view_switch;
-	int			_key_state[KEY_MAX];
-	int			_key_just_pressed[KEY_MAX];
-	int			(*pset)(t_cublx *self, int x, int y, int color);
-	int			(*btn)(t_cublx *self, int key_code);
-	int			(*btnp)(t_cublx *self, int key_code);
+	void			*mlx;
+	void			*win;
+	t_cublx_view	main_v;
+	t_cub_user		*user;
+	int				_key_state[KEY_MAX];
+	int				_key_just_pressed[KEY_MAX];
+	int				(*pset)(t_cublx *self, int x, int y, int color);
+	int				(*btn)(t_cublx *self, int key_code);
+	int				(*btnp)(t_cublx *self, int key_code);
 }				t_cublx;
 
 // public

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/25 18:31:48 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:29:21 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ void	move_player(t_data *data, double speed)
 // レイキャスティングを行った上でバッファをウィンドウに表示
 void	draw_buffer(t_cublx *cublx)
 {
-	int	i;
-	t_data	*data;
+	int			i;
+	t_data		*data;
+	void		*current_view_img;
 
 	i = 0;
 	data = cublx->user->param;
@@ -41,7 +42,8 @@ void	draw_buffer(t_cublx *cublx)
 		ray_casting(data, i, cublx);
 		i++;
 	}
-	mlx_put_image_to_window(cublx->mlx, cublx->win, data->front_buffer.img, 0, 0);
+	current_view_img = cublx->main_v.view[cublx->main_v.sw].img;
+	mlx_put_image_to_window(cublx->mlx, cublx->win, current_view_img, 0, 0);
 }
 
 void	display_player_position(t_data *data, t_cublx *cublx)
