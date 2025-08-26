@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 18:29:03 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 19:38:33 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/26 22:08:22 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	set_move_lock(t_ray *ray, double projection_plane_distance)
 		return ;
 	if (ray->hit_wall == FRONT)
 		ray->data->front_lock = 1;
+	if (ray->hit_wall == BACK)
+		ray->data->back_lock = 1;
 	if (ray->hit_wall == LEFT)
 		ray->data->left_lock = 1;
 	if (ray->hit_wall == RIGHT)

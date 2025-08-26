@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 18:56:05 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/26 22:08:01 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,26 @@ static void	move_player(t_data *data, double dir_x, double dir_y)
 		data->player.pos_y = new_y;
 }
 
+static void	rotate_player(t_data *data, double speed)
+{
+	double	len;
+
+	data->player.angle += speed;
+	if (data->player.angle < 0)
+		data->player.angle += 2 * PI;
+	if (data->player.angle > 2 * PI)
+		data->player.angle -= 2 * PI;
+	data->player.dir_x = cos(data->player.angle);
+	data->player.dir_y = sin(data->player.angle);
+	len = sqrt(data->player.dir_x * data->player.dir_x + data->player.dir_y
+			* data->player.dir_y);
+	if (len != 1.0)
+	{
+		data->player.dir_x /= len;
+		data->player.dir_y /= len;
+	}
+}
+
 // レイキャスティングを行った上でバッファをウィンドウに表示
 static void	draw_buffer(t_data *data)
 {
@@ -46,36 +66,43 @@ static void	draw_buffer(t_data *data)
 
 void	display_player_position(t_data *data)
 {
-	char	buffer[100];
+	char	buffer[200];
 
-	// プレイヤー座標を文字列に変換（小数点以下2桁まで表示）
-	sprintf(buffer, "Player pos: x = %.2f, y = %.2f", data->player.pos_x,
-		data->player.pos_y);
-	// 黒で描画 (色は16進で指定: 0xRRGGBB)
+	// プレイヤー座標、方向ベクトル、角度を文字列に変換（小数点以下2桁）
+	// 角度を度に変換: rad × 180 / PI
+	sprintf(buffer,
+			"Player pos: x = %.2f, y = %.2f | "
+			"dir_x = %.2f, dir_y = %.2f | "
+			"angle = %.2f deg",
+			data->player.pos_x,
+			data->player.pos_y,
+			data->player.dir_x,
+			data->player.dir_y,
+			data->player.angle * 180.0 / PI);
+	// 赤で描画 (色は16進で指定: 0xRRGGBB)
 	mlx_string_put(data->mlx, data->win, 10, 20, 0xFF0000, buffer);
 }
 
 // 1フレームごとに実行されるループ関数
 int	game_loop(t_data *data)
 {
+	if (data->player.turn_left)
+		rotate_player(data, -data->player.rot_speed);
+	if (data->player.turn_right)
+		rotate_player(data, data->player.rot_speed);
 	if (data->player.move_forward && !data->front_lock)
 		move_player(data, data->player.dir_x, data->player.dir_y);
-	if (data->player.move_backward)
-		move_player(data, data->player.dir_x, -data->player.dir_y);
+	if (data->player.move_backward && !data->back_lock)
+		move_player(data, -data->player.dir_x, -data->player.dir_y);
 	if (data->player.strafe_left && !data->left_lock)
 		move_player(data, data->player.dir_y, -data->player.dir_x);
 	if (data->player.strafe_right && !data->right_lock)
 		move_player(data, -data->player.dir_y, data->player.dir_x);
-	// if (data->player.turn_left)
-	// 	rotate_player(data, -data->player.rot_speed);
-	// if (data->player.turn_right)
-	// 	rotate_player(data, data->player.rot_speed);
 	data->front_lock = 0;
+	data->back_lock = 0;
 	data->left_lock = 0;
 	data->right_lock = 0;
 	draw_buffer(data);
-	// printf("Player Position: (%f, %f)\n", data->player.pos_x,
-	// 	data->player.pos_y);
 	display_player_position(data);
 	return (0);
 }

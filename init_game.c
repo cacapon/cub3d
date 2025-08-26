@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:15:23 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 19:55:05 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/26 22:09:23 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 // player構造体の初期化
 static void	init_player(t_data *data)
 {
+	data->player.angle = PI * 3 / 2;
 	data->player.pos_x = 2.5;
 	data->player.pos_y = 4.5;
-	data->player.dir_x = 0.0;
-	data->player.dir_y = -0.1;
-	data->player.move_speed = 0.075;
-	data->player.rot_speed = 0.03;
+	data->player.dir_x = cos(data->player.angle);
+	data->player.dir_y = sin(data->player.angle);
+	data->player.move_speed = 0.01;
+	data->player.rot_speed = 0.5 * PI / 180;
 	data->player.move_forward = 0;
 	data->player.move_backward = 0;
 	data->player.strafe_left = 0;
 	data->player.strafe_right = 0;
 	data->player.turn_left = 0;
 	data->player.turn_right = 0;
-	data->player.angle = PI / 2;
 }
 
 // bufferの初期化

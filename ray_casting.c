@@ -6,17 +6,20 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:21:15 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 20:08:03 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/26 22:01:19 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+#define FOV_RAD FOV *PI / 180.0
+
 static void	get_distance_to_wall(t_ray *ray)
 {
-	//謎に視点が90度ずれていたので荒業で修正している。要注意。
-	ray->angle = ((ray->data->player.angle - 90.0) - FOV / 2 + (ray->i
-				/ (double)WIDTH) * FOV) * (PI / 180.0);
+	double	camera_offset;
+
+	camera_offset = ((double)ray->i / WIDTH - 0.5) * FOV_RAD;
+	ray->angle = ray->data->player.angle + camera_offset;
 	ray->dir_x = cos(ray->angle);
 	ray->dir_y = sin(ray->angle);
 	ray->pos_x = ray->data->player.pos_x;
