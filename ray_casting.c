@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:21:15 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 22:01:19 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:57:29 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ static void	get_distance_to_wall(t_ray *ray)
 	{
 		ray->pos_x += ray->dir_x * STEP;
 		ray->pos_y += ray->dir_y * STEP;
-		if (ray->data->map[(int)ray->pos_y][(int)ray->pos_x] == '1'
-			|| ray->data->map[(int)ray->pos_y][(int)ray->pos_x] == '2')
+		if (ray->data->map[(int)ray->pos_y][(int)ray->pos_x] == '1')
 			break ;
 	}
 	ray->distance = sqrt((ray->pos_x - ray->data->player.pos_x) * (ray->pos_x
@@ -47,7 +46,32 @@ static void	get_wall_height(t_ray *ray)
 	else
 		projection_plane_distance = WIDTH / (2.0 * tan(FOV * PI / 180.0));
 	ray->wall_height = 1.0 * projection_plane_distance / ray->distance;
-	set_move_lock(ray, projection_plane_distance);
+	// set_move_lock(ray, projection_plane_distance);
+}
+
+static void	get_colligion_direction(t_ray *ray)
+{
+	double	prev_x;
+	double	prev_y;
+
+	prev_x = ray->pos_x - ray->dir_x * STEP;
+	prev_y = ray->pos_y - ray->dir_y * STEP;
+	if ((int)prev_x != (int)ray->pos_x)
+	{
+		if (ray->pos_x > prev_x)
+			ray->hit_wall = RIGHT;
+		else
+			ray->hit_wall = LEFT;
+	}
+	else if ((int)prev_y != (int)ray->pos_y)
+	{
+		if (ray->pos_y < prev_y)
+			ray->hit_wall = FRONT;
+		else
+			ray->hit_wall = BACK;
+	}
+	else
+		ray->hit_wall = -1;
 }
 
 static void	get_tex_x(t_ray *ray, t_img *img)
@@ -85,7 +109,7 @@ void	ray_casting(t_data *data, int i)
 	ray.i = i;
 	get_distance_to_wall(&ray);
 	get_wall_height(&ray);
-	tex_img = &data->textures.south;
+	get_colligion_direction(&ray);
 	if (ray.hit_wall == FRONT)
 		tex_img = &data->textures.south;
 	else if (ray.hit_wall == BACK)

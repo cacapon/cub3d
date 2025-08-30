@@ -6,29 +6,11 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 22:08:01 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:59:50 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// playerの座標更新
-static void	move_player(t_data *data, double dir_x, double dir_y)
-{
-	double	speed;
-	double	new_x;
-	double	new_y;
-
-	speed = data->player.move_speed;
-	new_x = data->player.pos_x + dir_x * speed;
-	new_y = data->player.pos_y + dir_y * speed;
-	if (data->map[(int)data->player.pos_y][(int)new_x] != '1'
-		&& data->map[(int)data->player.pos_y][(int)new_x] != '2')
-		data->player.pos_x = new_x;
-	if (data->map[(int)new_y][(int)data->player.pos_x] != '1'
-		&& data->map[(int)new_y][(int)data->player.pos_x] != '2')
-		data->player.pos_y = new_y;
-}
 
 static void	rotate_player(t_data *data, double speed)
 {
@@ -47,6 +29,35 @@ static void	rotate_player(t_data *data, double speed)
 	{
 		data->player.dir_x /= len;
 		data->player.dir_y /= len;
+	}
+}
+
+static void	move_player(t_data *data, double dir_x, double dir_y)
+{
+	double	speed;
+	double	new_x;
+	double	new_y;
+	double	fx;
+	double	fy;
+
+	speed = data->player.move_speed;
+	new_x = data->player.pos_x + dir_x * speed;
+	new_y = data->player.pos_y + dir_y * speed;
+	fx = new_x - floor(new_x);
+	fy = new_y - floor(new_y);
+	if (data->map[(int)data->player.pos_y][(int)new_x] != '1')
+	{
+		if (!(fx < 0.25 && data->map[(int)data->player.pos_y][(int)new_x
+				- 1] == '1') && !(fx > 0.75
+				&& data->map[(int)data->player.pos_y][(int)new_x + 1] == '1'))
+			data->player.pos_x = new_x;
+	}
+	if (data->map[(int)new_y][(int)data->player.pos_x] != '1')
+	{
+		if (!(fy < 0.25 && data->map[(int)new_y
+				- 1][(int)data->player.pos_x] == '1') && !(fy > 0.75
+				&& data->map[(int)new_y + 1][(int)data->player.pos_x] == '1'))
+			data->player.pos_y = new_y;
 	}
 }
 
@@ -90,18 +101,14 @@ int	game_loop(t_data *data)
 		rotate_player(data, -data->player.rot_speed);
 	if (data->player.turn_right)
 		rotate_player(data, data->player.rot_speed);
-	if (data->player.move_forward && !data->front_lock)
+	if (data->player.move_forward)
 		move_player(data, data->player.dir_x, data->player.dir_y);
-	if (data->player.move_backward && !data->back_lock)
+	if (data->player.move_backward)
 		move_player(data, -data->player.dir_x, -data->player.dir_y);
-	if (data->player.strafe_left && !data->left_lock)
+	if (data->player.strafe_left)
 		move_player(data, data->player.dir_y, -data->player.dir_x);
-	if (data->player.strafe_right && !data->right_lock)
+	if (data->player.strafe_right)
 		move_player(data, -data->player.dir_y, data->player.dir_x);
-	data->front_lock = 0;
-	data->back_lock = 0;
-	data->left_lock = 0;
-	data->right_lock = 0;
 	draw_buffer(data);
 	display_player_position(data);
 	return (0);

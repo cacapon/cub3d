@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 22:07:38 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:58:56 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,6 @@ typedef struct s_data
 	int			current_buffer;
 	char		**map;
 	t_player	player;
-	int			front_lock;
-	int			back_lock;
-	int			left_lock;
-	int			right_lock;
 }				t_data;
 
 typedef struct s_ray
@@ -116,6 +112,5 @@ void			ray_casting(t_data *data, int i);
 void			draw_ceiling_in_vertical_line(t_ray *ray);
 void			draw_wall_in_vertical_line(t_ray *ray, t_img *img);
 void			draw_floor_in_vertical_line(t_ray *ray);
-void			set_move_lock(t_ray *ray, double projection_plane_distance);
 
 #endif

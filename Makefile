@@ -6,7 +6,7 @@
 #    By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 17:48:57 by yookamot          #+#    #+#              #
-#    Updated: 2025/08/25 18:29:42 by yookamot         ###   ########.fr        #
+#    Updated: 2025/08/30 20:59:00 by yookamot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,7 @@ SRCS = draw_vertical_line.c \
         main.c \
         player_movement.c \
         ray_casting.c \
-        read_map.c \
-        set_move_lock.c
+        read_map.c
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc
