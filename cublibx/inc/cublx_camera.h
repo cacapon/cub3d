@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:19:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 18:18:44 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/01 18:25:04 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_cublx_camera
 
 // public
 t_camera	*cublx_camera_new(t_vec2 pos, t_vec2 dir, double fov_deg);
-int			cublx_camera_del(t_cublx_camera **camera);
+int			cublx_camera_del(t_camera **camera);
 
 // methods
 t_vec2		_cublx_camera_get_ray(t_camera *self, int x, int w);
