@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:21:15 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/01 20:08:00 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/01 21:22:44 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@ static void	get_distance_to_wall(t_ray *ray)
 static void	get_wall_height(t_ray *ray)
 {
 	double	projection_plane_distance;
+	double	fixed_distance;
 
 	if (FOV == 90)
 		projection_plane_distance = WIDTH / 2.0;
 	else
 		projection_plane_distance = WIDTH / (2.0 * tan(FOV * PI / 180.0));
-	ray->wall_height = 1.0 * projection_plane_distance / ray->distance;
+	fixed_distance = projection_plane_distance / cos(ray->angle
+			- ray->data->player.angle);
+	ray->wall_height = 1.0 * fixed_distance / ray->distance;
 }
 
 static void	get_colligion_direction(t_ray *ray)

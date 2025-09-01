@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/01 20:13:53 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/01 21:23:34 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ static void	move_player(t_data *data, double dir_x, double dir_y)
 	fy = new_y - floor(new_y);
 	if (data->map[(int)data->player.pos_y][(int)new_x] != '1')
 	{
-		if (!(fx < 0.25 && data->map[(int)data->player.pos_y][(int)new_x
-				- 1] == '1') && !(fx > 0.75
+		if (!(fx < 0.35 && data->map[(int)data->player.pos_y][(int)new_x
+				- 1] == '1') && !(fx > 0.65
 				&& data->map[(int)data->player.pos_y][(int)new_x + 1] == '1'))
 			data->player.pos_x = new_x;
 	}
 	if (data->map[(int)new_y][(int)data->player.pos_x] != '1')
 	{
-		if (!(fy < 0.25 && data->map[(int)new_y
-				- 1][(int)data->player.pos_x] == '1') && !(fy > 0.75
+		if (!(fy < 0.35 && data->map[(int)new_y
+				- 1][(int)data->player.pos_x] == '1') && !(fy > 0.65
 				&& data->map[(int)new_y + 1][(int)data->player.pos_x] == '1'))
 			data->player.pos_y = new_y;
 	}
