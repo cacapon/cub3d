@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:04:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 18:36:48 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/01 19:07:01 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	_allocate_cublx_user(t_cublx *cublx)
 {
 	if (!cublx)
 		return (1);
-	cublx->user = _cublx_calloc(1, sizeof(t_cub_user));
+	cublx->user = cublx_calloc(1, sizeof(t_cub_user));
 	if (!cublx->user)
 		return (1);
 	return (0);
@@ -57,7 +57,7 @@ t_cublx	*cublx_new(int w, int h, char *title)
 {
 	t_cublx	*cublx;
 
-	cublx = _cublx_calloc(1, sizeof(t_cublx));
+	cublx = cublx_calloc(1, sizeof(t_cublx));
 	if (!cublx)
 		return (NULL);
 	if (_allocate_mlx(cublx) != 0)

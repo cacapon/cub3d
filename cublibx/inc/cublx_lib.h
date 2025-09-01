@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:50:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 18:53:09 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/01 19:06:43 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 #include <stddef.h>
 
-void	*_cublx_calloc(size_t count, size_t size);
+void	*cublx_calloc(size_t count, size_t size);
 
 #endif

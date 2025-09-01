@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:18:39 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 18:16:39 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/01 19:07:00 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_camera	*cublx_camera_new(t_vec2 pos, t_vec2 dir, double fov_deg)
 	fov = fov_deg * M_PI / 180.0;
 	if (fov <= 0.0 || fov >= M_PI)
 		return (NULL);
-	camera = _cublx_calloc(1, sizeof(t_camera));
+	camera = cublx_calloc(1, sizeof(t_camera));
 	if (!camera)
 		return (NULL);
 	camera->pos = pos;
