@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 18:53:42 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/01 18:59:16 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_cublx_img
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
-	int			line_len;
+	int			line_length;
 	int			endian;
 	t_vec2i		size;
 }				t_cublx_img;
