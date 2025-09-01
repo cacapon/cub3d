@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 18:23:49 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/01 18:53:42 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,20 @@
 # include "inc/cublx_vec2i.h"
 # include "inc/cublx_camera.h"
 # include <X11/keysym.h>
-# include <stddef.h>
 
 # define KEY_MAX 0xFFFF
 
 typedef struct s_cublx	t_cublx;
+typedef t_cublx_vec2i	t_vec2i;
 
 typedef struct s_cublx_img
 {
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
-	int			line_length;
+	int			line_len;
 	int			endian;
-	int			width;
-	int			height;
+	t_vec2i		size;
 }				t_cublx_img;
 
 typedef struct s_cub_user
@@ -56,6 +55,7 @@ typedef struct s_cublx
 	int			(*pset)(t_cublx *self, int x, int y, int color);
 	int			(*btn)(t_cublx *self, int key_code);
 	int			(*btnp)(t_cublx *self, int key_code);
+	int			(*load_xpm)(t_cublx *self, t_cublx_img *img, char *xpm_path);
 }				t_cublx;
 
 // public
@@ -67,7 +67,6 @@ void	cublx_set_user_param(t_cublx *cublx, void *user_param);
 void	cublx_run(t_cublx *cublx);
 
 // private
-void	*_cublx_calloc(size_t count, size_t size);
 int		_allocate_view(t_cublx_img *view, t_cublx *cublx, int w, int h);
 void	_cublx_key_state_init(t_cublx *self);
 void	_cublx_key_just_pressed_init(t_cublx *self);
@@ -77,4 +76,6 @@ int		_cublx_pset(t_cublx *self, int x, int y, int color);
 int		_cublx_btn(t_cublx *self, int keycode);
 int		_cublx_btnp(t_cublx *self, int keycode);
 int		_cublx_loop(t_cublx *cublx);
+int		_cublx_load_xpm(t_cublx *self, t_cublx_img *img, char *xpm_path);
+
 #endif
