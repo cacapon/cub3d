@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/30 20:59:50 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/01 20:13:53 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ static void	rotate_player(t_data *data, double speed)
 	data->player.dir_y = sin(data->player.angle);
 	len = sqrt(data->player.dir_x * data->player.dir_x + data->player.dir_y
 			* data->player.dir_y);
-	if (len != 1.0)
-	{
-		data->player.dir_x /= len;
-		data->player.dir_y /= len;
-	}
+	data->player.dir_x /= len;
+	data->player.dir_y /= len;
 }
 
 static void	move_player(t_data *data, double dir_x, double dir_y)
