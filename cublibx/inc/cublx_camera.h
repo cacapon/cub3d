@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:19:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 18:25:04 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/01 18:52:03 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUBLX_CAMERA_H
 
 # include "cublx_vec2.h"
+# include "cublx_lib.h"
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif

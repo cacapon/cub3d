@@ -17,6 +17,7 @@
 # include "inc/cublx_lib.h"
 # include "inc/cublx_vec2.h"
 # include "inc/cublx_vec2i.h"
+# include "inc/cublx_camera.h"
 # include <X11/keysym.h>
 # include <stddef.h>
 
