@@ -56,3 +56,6 @@ dkms.conf
 
 # custom
 .vscode
+
+# Cub3D executable
+cub3d
