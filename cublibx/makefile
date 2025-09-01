@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/20 07:19:09 by ttsubo            #+#    #+#              #
-#    Updated: 2025/08/24 18:34:32 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/09/01 18:02:37 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 
 MLX_DIR = libs/mlx
 W_FLG	= -Wall -Wextra -Werror
-I_FLG	= -I. -I$(MLX_DIR)
+I_FLG	= -I. -Iinc -I$(MLX_DIR)
 L_FLG	= -Llib/mlx -lmlx -lX11 -lXext
 
 OBJ_DIR 		= objs
@@ -31,7 +31,9 @@ PRI_SRCS = 	_cublx_calloc.c _cublx_loop.c \
 			_cublx_btn.c _cublx_btnp.c _cublx_pset.c\
 			_cublx_key_just_pressed_init.c _cublx_key_state_init.c \
 			_cublx_key_pressed.c _cublx_key_released.c 
-PUB_SRCS = cublx_del.c cublx_new.c cublx_run.c cublx_set_hooks.c cublx_set_user_param.c
+PUB_SRCS = 	cublx_del.c cublx_new.c \
+			cublx_vec2.c cublx_vec2i.c \
+			cublx_run.c cublx_set_hooks.c cublx_set_user_param.c
 
 SRCS = $(addprefix $(PRI_SRCS_DIR)/, $(PRI_SRCS)) \
 	   $(addprefix $(PUB_SRCS_DIR)/, $(PUB_SRCS))

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/24 18:34:14 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/01 18:03:02 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ using type
 	size_t
 */
 # include "libs/mlx/mlx.h"
+# include "cublx_vec2.h"
+# include "cublx_vec2i.h"
 # include <X11/keysym.h>
 # include <stddef.h>
 
