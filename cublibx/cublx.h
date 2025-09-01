@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 18:59:16 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/01 19:30:57 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_cublx
 {
 	void		*mlx;
 	void		*win;
+	t_vec2		win_size;
 	t_cublx_img	main_view[2];
 	t_cub_user	*user;
 	int			view_switch;

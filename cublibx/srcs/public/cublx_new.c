@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:04:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 19:07:01 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/01 19:31:31 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_cublx	*cublx_new(int w, int h, char *title)
 		return (cublx_del(&cublx), NULL);
 	if (_allocate_views(cublx, h, w) != 0)
 		return (cublx_del(&cublx), NULL);
+	cublx->win_size = (t_vec2){w, h};
 	cublx->btn = _cublx_btn;
 	cublx->btnp = _cublx_btnp;
 	cublx->pset = _cublx_pset;
