@@ -13,13 +13,8 @@
 #ifndef CUBLX_H
 # define CUBLX_H
 
-/*
-using std function
-	malloc
-using type
-	size_t
-*/
 # include "libs/mlx/mlx.h"
+# include "inc/cublx_lib.h"
 # include "inc/cublx_vec2.h"
 # include "inc/cublx_vec2i.h"
 # include <X11/keysym.h>
