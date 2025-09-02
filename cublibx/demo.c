@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:00:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 09:57:46 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 10:04:47 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static int	update(t_cublx *cublx)
 		data->player->move(data->player, cublx_vec2(0, speed));
 	if (cublx->btn(cublx, XK_a))
 		data->player->move(data->player, cublx_vec2(-speed, 0));
-	if (cublx->btn(cublx, XK_r))
+	if (cublx->btn(cublx, XK_d))
 		data->player->move(data->player, cublx_vec2(speed, 0));
 	if (cublx->btn(cublx, XK_Left))
 		data->player->rotate(data->player, speed);
