@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _cublx_calloc.c                                    :+:      :+:    :+:   */
+/*   cublx_calloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -28,7 +28,7 @@ static void	*_cublx_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-void	*_cublx_calloc(size_t count, size_t size)
+void	*cublx_calloc(size_t count, size_t size)
 {
 	void	*_block;
 
