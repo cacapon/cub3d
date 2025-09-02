@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 19:30:57 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 09:28:18 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,27 @@
 # include <X11/keysym.h>
 
 # define KEY_MAX 0xFFFF
+# define HIT_XLINE 0
+# define HIT_YLINE 1
 
 typedef struct s_cublx	t_cublx;
 typedef t_cublx_vec2i	t_vec2i;
+
+typedef struct s_raycasting
+{
+	int		x;
+	char	**map;
+	int		ceiling_color;
+	int		floor_color;
+	int		wall_color;
+	t_vec2i	grid_pos;
+	t_vec2i	step;
+	t_vec2	ray_dir;
+	t_vec2	delta_dist;
+	t_vec2	side_dist;
+	int		line_h;
+	double	perp_wall_dist;
+}			t_raycasting;
 
 typedef struct s_cublx_img
 {
@@ -57,6 +75,7 @@ typedef struct s_cublx
 	int			(*btn)(t_cublx *self, int key_code);
 	int			(*btnp)(t_cublx *self, int key_code);
 	int			(*load_xpm)(t_cublx *self, t_cublx_img *img, char *xpm_path);
+	int			(*raycasting)(t_cublx *self, t_camera *camera, t_raycasting rc);
 }				t_cublx;
 
 // public
@@ -78,5 +97,6 @@ int		_cublx_btn(t_cublx *self, int keycode);
 int		_cublx_btnp(t_cublx *self, int keycode);
 int		_cublx_loop(t_cublx *cublx);
 int		_cublx_load_xpm(t_cublx *self, t_cublx_img *img, char *xpm_path);
+int		_cublx_raycasting(t_cublx *self, t_camera *camera, t_raycasting rc);
 
 #endif

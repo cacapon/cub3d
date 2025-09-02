@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:04:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 19:31:31 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 09:25:58 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ t_cublx	*cublx_new(int w, int h, char *title)
 	cublx->btn = _cublx_btn;
 	cublx->btnp = _cublx_btnp;
 	cublx->pset = _cublx_pset;
+	cublx->load_xpm = _cublx_load_xpm;
+	cublx->raycasting = _cublx_raycasting;
 	cublx->view_switch = 0;
 	_cublx_key_state_init(cublx);
 	_cublx_key_just_pressed_init(cublx);
