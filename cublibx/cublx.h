@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 11:09:42 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 15:29:12 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,6 @@
 typedef struct s_cublx	t_cublx;
 typedef t_cublx_vec2i	t_vec2i;
 
-typedef struct s_raycasting
-{
-	int		x;
-	char	**map;
-	int		ceiling_color;
-	int		floor_color;
-	int		wall_color;
-	t_vec2i	grid_pos;
-	t_vec2i	step;
-	t_vec2	ray_dir;
-	t_vec2	delta_dist;
-	t_vec2	side_dist;
-	int		line_h;
-	double	perp_wall_dist;
-}			t_raycasting;
-
 typedef struct s_cublx_img
 {
 	void		*img;
@@ -52,6 +36,29 @@ typedef struct s_cublx_img
 	int			endian;
 	t_vec2i		size;
 }				t_cublx_img;
+
+typedef t_cublx_img		t_img;
+
+typedef struct s_raycasting
+{
+	int		x;
+	char	**map;
+	int		ceiling_color;
+	int		floor_color;
+	int		wall_color;
+	t_img	*texture_n;
+	t_img	*texture_e;
+	t_img	*texture_w;
+	t_img	*texture_s;
+	t_vec2i	grid_pos;
+	t_vec2i	step;
+	t_vec2	ray_dir;
+	t_vec2	delta_dist;
+	t_vec2	side_dist;
+	int		line_h;
+	int		side;
+	double	perp_wall_dist;
+}			t_raycasting;
 
 typedef struct s_cub_user
 {
