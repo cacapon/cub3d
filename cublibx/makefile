@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/20 07:19:09 by ttsubo            #+#    #+#              #
-#    Updated: 2025/09/02 09:36:38 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/09/02 11:14:05 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ PUB_SRCS_DIR	= srcs/public
 
 PRI_SRCS = 	_cublx_loop.c \
 			_allocate_view.c \
-			_cublx_btn.c _cublx_btnp.c _cublx_pset.c \
+			_cublx_btn.c _cublx_btnp.c _cublx_pset.c _cublx_quit.c \
 			_cublx_load_xpm.c _cublx_raycasting.c \
 			_cublx_camera_get_ray.c _cublx_camera_move.c \
 			_cublx_camera_rotate.c _cublx_camera_set_fov.c \
