@@ -86,6 +86,7 @@ void	cublx_set_hooks(t_cublx *cublx, int (*update)(t_cublx *),
 			int (*draw)(t_cublx *), int (*destructor)(t_cublx *));
 void	cublx_set_user_param(t_cublx *cublx, void *user_param);
 void	cublx_run(t_cublx *cublx);
+int		cublx_get_tex_color(t_cublx_img *tex, int x, int y);
 
 // private
 int		_allocate_view(t_cublx_img *view, t_cublx *cublx, int w, int h);

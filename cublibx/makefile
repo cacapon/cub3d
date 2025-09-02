@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/20 07:19:09 by ttsubo            #+#    #+#              #
-#    Updated: 2025/09/02 11:14:05 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/09/02 15:15:22 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ PRI_SRCS = 	_cublx_loop.c \
 PUB_SRCS = 	cublx_del.c cublx_new.c \
 			cublx_vec2.c cublx_vec2i.c \
 			cublx_camera_new.c cublx_camera_del.c \
+			cublx_get_tex_color.c \
 			cublx_run.c cublx_set_hooks.c cublx_set_user_param.c cublx_calloc.c 
 
 SRCS = $(addprefix $(PRI_SRCS_DIR)/, $(PRI_SRCS)) \
