@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:00:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 10:04:47 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 13:55:54 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_data	*init_data(void)
 	data->floor_color = 255;
 	data->player = cublx_camera_new(p_pos, p_dir, 66.0);
 	if (!data->player)
-		(free(data), NULL);
+		return (free(data), NULL);
 	data->map = cublx_calloc(7 , sizeof(char *));
 	data->map[0] = strdup("11111");
 	data->map[1] = strdup("10001");
