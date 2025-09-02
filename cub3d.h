@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/30 20:58:56 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:24:49 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -112,5 +113,6 @@ void			ray_casting(t_data *data, int i);
 void			draw_ceiling_in_vertical_line(t_ray *ray);
 void			draw_wall_in_vertical_line(t_ray *ray, t_img *img);
 void			draw_floor_in_vertical_line(t_ray *ray);
+void			move_player(t_data *data, double dir_x, double dir_y);
 
 #endif

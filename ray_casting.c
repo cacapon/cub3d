@@ -6,19 +6,17 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:21:15 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/01 21:22:44 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:31:15 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-#define FOV_RAD FOV *PI / 180.0
-
 static void	get_distance_to_wall(t_ray *ray)
 {
 	double	camera_offset;
 
-	camera_offset = ((double)ray->i / WIDTH - 0.5) * FOV_RAD;
+	camera_offset = ((double)ray->i / WIDTH - 0.5) * FOV * PI / 180.0;
 	ray->angle = ray->data->player.angle + camera_offset;
 	ray->dir_x = cos(ray->angle);
 	ray->dir_y = sin(ray->angle);
@@ -46,9 +44,7 @@ static void	get_wall_height(t_ray *ray)
 		projection_plane_distance = WIDTH / 2.0;
 	else
 		projection_plane_distance = WIDTH / (2.0 * tan(FOV * PI / 180.0));
-	fixed_distance = projection_plane_distance / cos(ray->angle
-			- ray->data->player.angle);
-	ray->wall_height = 1.0 * fixed_distance / ray->distance;
+	ray->wall_height = 1.0 * projection_plane_distance / ray->distance;
 }
 
 static void	get_colligion_direction(t_ray *ray)
@@ -81,7 +77,6 @@ static void	get_tex_x(t_ray *ray, t_img *img)
 	double	prev_x;
 	double	prev_y;
 	double	wall_x;
-	int		hit_vertical;
 
 	prev_x = ray->pos_x - ray->dir_x * STEP;
 	prev_y = ray->pos_y - ray->dir_y * STEP;
@@ -90,15 +85,9 @@ static void	get_tex_x(t_ray *ray, t_img *img)
 		wall_x = ray->pos_y - floor(ray->pos_y);
 		if (ray->pos_x < prev_x)
 			wall_x = 1.0 - wall_x;
-		hit_vertical = 1;
 	}
 	else
-	{
 		wall_x = ray->pos_x - floor(ray->pos_x);
-		hit_vertical = 0;
-	}
-	//ここで東西南北のテクスチャの条件分岐（テクスチャのサイズが同じならば必要ない）
-	//東西南北どの面にあたったかの判定をし、適切なフラグをray構造体内でたてる
 	ray->tex_x = (int)(wall_x * img->width);
 }
 
