@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:15:23 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/30 20:58:08 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:02:27 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ static void	init_buffer(t_data *data)
 			&data->front_buffer.endian);
 	data->back_buffer.img = NULL;
 	data->back_buffer.addr = NULL;
-	// data->back_buffer.img = mlx_new_image(data->mlx, WIDTH,
-	// 		HEIGHT);
-	// data->back_buffer.addr = mlx_get_data_addr(data->back_buffer.img,
-	// 		&data->back_buffer.bits_per_pixel, &data->back_buffer.line_length,
-	// 		&data->back_buffer.endian);
 	data->current_buffer = 0;
 }
 
