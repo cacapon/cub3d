@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:00:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 09:40:07 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 09:57:46 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,29 @@ static int	draw(t_cublx *cublx)
 
 static int	update(t_cublx *cublx)
 {
+	t_data	*data;
+	double	speed;
+
+	data = cublx->user->param;
+	speed = 0.01;
 	if (cublx->btnp(cublx, XK_q))
 	{
 		printf("push q btn\n");
 		cublx_del(&cublx);
 		exit(0);
 	}
+	if (cublx->btn(cublx, XK_w))
+		data->player->move(data->player, cublx_vec2(0, -speed));
+	if (cublx->btn(cublx, XK_s))
+		data->player->move(data->player, cublx_vec2(0, speed));
 	if (cublx->btn(cublx, XK_a))
-		cublx->pset(cublx, 10, 10, 0xFFFFFF);
+		data->player->move(data->player, cublx_vec2(-speed, 0));
+	if (cublx->btn(cublx, XK_r))
+		data->player->move(data->player, cublx_vec2(speed, 0));
+	if (cublx->btn(cublx, XK_Left))
+		data->player->rotate(data->player, speed);
+	if (cublx->btn(cublx, XK_Right))
+		data->player->rotate(data->player, -speed);
 	return (0);
 }
 
@@ -110,7 +125,7 @@ int	main(void)
 	t_data	*param;
 
 	param = init_data();
-	cublx = cublx_new(100, 100, "test");
+	cublx = cublx_new(500, 400, "test");
 	cublx_set_hooks(cublx, update, draw, dest);
 	cublx_set_user_param(cublx, param);
 	cublx_run(cublx);
