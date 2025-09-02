@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 17:00:46 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 17:13:45 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 17:21:01 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	_cublx_free_tex(t_cublx *self, t_cublx_img **tex)
 	_tex = *tex;
 	if (_tex && _tex->img)
 	{
-		mlx_destroy_image(self->mlx, _tex);
+		mlx_destroy_image(self->mlx, _tex->img);
 		free(_tex);
 		*tex = NULL;
 		return (0);
