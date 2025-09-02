@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:00:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 16:58:20 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 17:23:24 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_data	*init_data(void)
 	data = cublx_calloc(1, sizeof(t_data));
 	if (!data)
 		return (NULL);
-	p_pos = (t_vec2){2.5, 4.5};
+	p_pos = (t_vec2){2.5, 2.5};
 	p_dir = (t_vec2){0.0, -1.0};
 	data->ceiling_color = 16711680;
 	data->floor_color = 255;
@@ -37,14 +37,12 @@ static t_data	*init_data(void)
 	data->textures.east = cublx_calloc(1, sizeof(t_img));
 	data->textures.west = cublx_calloc(1, sizeof(t_img));
 	data->textures.south = cublx_calloc(1, sizeof(t_img));
-	data->map = cublx_calloc(7, sizeof(char *));
+	data->map = cublx_calloc(5, sizeof(char *));
 	data->map[0] = strdup("11111");
 	data->map[1] = strdup("10001");
-	data->map[2] = strdup("10101");
+	data->map[2] = strdup("10N01");
 	data->map[3] = strdup("10001");
-	data->map[4] = strdup("10N01");
-	data->map[5] = strdup("10001");
-	data->map[6] = strdup("11111");
+	data->map[4] = strdup("11111");
 	return (data);
 }
 
@@ -62,32 +60,20 @@ static int	dest(t_cublx *cublx)
 	data = cublx->user->param;
 	cublx_camera_del(&data->player);
 	i = 0;
-	while (i < 7)
+	while (i < 5)
 	{
 		if (data->map[i])
 			free(data->map[i]);
 		i++;
 	}
 	if (data->textures.north && data->textures.north->img)
-	{
-		mlx_destroy_image(cublx->mlx, data->textures.north->img);
-		free(data->textures.north);
-	}
+		cublx->free_tex(cublx, &data->textures.north);
 	if (data->textures.east && data->textures.east->img)
-	{
-		mlx_destroy_image(cublx->mlx, data->textures.east->img);
-		free(data->textures.east);
-	}
+		cublx->free_tex(cublx, &data->textures.east);
 	if (data->textures.west && data->textures.west->img)
-	{
-		mlx_destroy_image(cublx->mlx, data->textures.west->img);
-		free(data->textures.west);
-	}
+		cublx->free_tex(cublx, &data->textures.west);
 	if (data->textures.south && data->textures.south->img)
-	{
-		mlx_destroy_image(cublx->mlx, data->textures.south->img);
-		free(data->textures.south);
-	}
+		cublx->free_tex(cublx, &data->textures.south);
 	free(data->map);
 	free(data);
 	return (0);
