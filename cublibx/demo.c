@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:00:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 16:17:27 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 16:58:20 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static t_data	*init_data(void)
 	data->player = cublx_camera_new(p_pos, p_dir, 66.0);
 	if (!data->player)
 		return (free(data), NULL);
-	data->textures.north= cublx_calloc(1, sizeof(t_img));
+	data->textures.north = cublx_calloc(1, sizeof(t_img));
 	data->textures.east = cublx_calloc(1, sizeof(t_img));
 	data->textures.west = cublx_calloc(1, sizeof(t_img));
 	data->textures.south = cublx_calloc(1, sizeof(t_img));
-	data->map = cublx_calloc(7 , sizeof(char *));
+	data->map = cublx_calloc(7, sizeof(char *));
 	data->map[0] = strdup("11111");
 	data->map[1] = strdup("10001");
 	data->map[2] = strdup("10101");
@@ -57,13 +57,11 @@ static t_data	*init_data(void)
 static int	dest(t_cublx *cublx)
 {
 	int		i;
-	int		j;
 	t_data	*data;
 
 	data = cublx->user->param;
 	cublx_camera_del(&data->player);
 	i = 0;
-	j = 0;
 	while (i < 7)
 	{
 		if (data->map[i])
@@ -97,7 +95,7 @@ static int	dest(t_cublx *cublx)
 
 static int	draw(t_cublx *cublx)
 {
-	int	i;
+	int				i;
 	t_data			*data;
 	t_raycasting	rc;
 
@@ -112,7 +110,7 @@ static int	draw(t_cublx *cublx)
 	i = 0;
 	while (i < cublx->win_size.x)
 	{
-		rc.x = i++;
+		rc.draw_pos.x = i++;
 		cublx->raycasting(cublx, data->player, rc);
 	}
 	return (0);
@@ -126,11 +124,7 @@ static int	update(t_cublx *cublx)
 	data = cublx->user->param;
 	speed = 0.03;
 	if (cublx->btnp(cublx, XK_q))
-	{
-		printf("push q btn\n");
-		cublx_del(&cublx);
-		exit(0);
-	}
+		cublx->quit(cublx, EXIT_SUCCESS);
 	if (cublx->btn(cublx, XK_w))
 		data->player->move(data->player, cublx_vec2(0, -speed));
 	if (cublx->btn(cublx, XK_s))

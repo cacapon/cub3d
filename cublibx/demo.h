@@ -6,16 +6,16 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:27:22 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 15:14:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 16:21:16 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEMO_H
 # define DEMO_H
 
-#include "cublx.h"
+# include "cublx.h"
 
-typedef t_cublx_camera t_camera;
+typedef t_cublx_camera	t_camera;
 
 typedef struct s_textures
 {

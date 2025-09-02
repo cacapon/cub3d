@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 15:29:12 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/02 16:50:03 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef t_cublx_img		t_img;
 
 typedef struct s_raycasting
 {
-	int		x;
+	t_vec2i	draw_pos;
 	char	**map;
 	int		ceiling_color;
 	int		floor_color;
@@ -108,5 +108,6 @@ int		_cublx_quit(t_cublx *self, int stscode);
 int		_cublx_loop(t_cublx *cublx);
 int		_cublx_load_xpm(t_cublx *self, t_cublx_img *img, char *xpm_path);
 int		_cublx_raycasting(t_cublx *self, t_camera *camera, t_raycasting rc);
+void	_cublx_draw_line(t_cublx *self, t_camera *camera, t_raycasting rc);
 
 #endif
