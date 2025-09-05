@@ -1,6 +1,3 @@
-[submodule "cublibx/libs/mlx"]
-	path = cublibx/libs/mlx
-	url = https://github.com/42paris/minilibx-linux.git
-[submodule "minilibx-linux"]
-	path = minilibx-linux
-	url = https://github.com/42paris/minilibx-linux.git
+[submodule "libs/cublibx/libs/mlx"]
+	path = libs/cublibx/libs/mlx
+	url = https://github.com/42Paris/minilibx-linux.git
