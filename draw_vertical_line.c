@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_vertical_line.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:46:39 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 19:54:10 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:21:38 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_wall_in_vertical_line(t_ray *ray, t_img *img)
 	int		end;
 	int		*dst;
 
-	step = (double)img->height / ray->wall_height;
+	step = (double)img->size.y / ray->wall_height;
 	ray->tex_pos = 0.0;
 	y = (HEIGHT - ray->wall_height) / 2;
 	if (y < 0)
@@ -52,9 +52,9 @@ void	draw_wall_in_vertical_line(t_ray *ray, t_img *img)
 	while (y <= end)
 	{
 		ray->tex_y = (int)ray->tex_pos;
-		if (ray->tex_y >= img->height)
-			ray->tex_y = img->height - 1;
-		dst[y * WIDTH + ray->i] = ((int *)img->addr)[ray->tex_y * img->width
+		if (ray->tex_y >= img->size.y)
+			ray->tex_y = img->size.y - 1;
+		dst[y * WIDTH + ray->i] = ((int *)img->addr)[ray->tex_y * img->size.x
 			+ ray->tex_x];
 		ray->tex_pos += step;
 		y++;

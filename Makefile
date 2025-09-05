@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 17:48:57 by yookamot          #+#    #+#              #
-#    Updated: 2025/09/05 17:01:01 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/09/05 18:16:41 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,25 +25,25 @@ SRCS = draw_vertical_line.c \
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc
-CFLAGS = -I./libs/minilibx-linux
-LDFLAGS = -L./libs/minilibx-linux -lmlx -lXext -lX11 -lm -lz -g
+CFLAGS = -I./libs/cublibx
+LDFLAGS = -L./libs/cublibx -lcublx -lXext -lX11 -lm -lz -g
 
-MLX_DIR = ./libs/minilibx-linux
-MLX = $(MLX_DIR)/libmlx.a
+CUBLX_DIR = ./libs/cublibx
+CUBLX = $(CUBLX_DIR)/libcublx.a
 
 all: $(NAME)
 
-$(MLX):
-	$(MAKE) -C $(MLX_DIR)
+$(CUBLX):
+	$(MAKE) -C $(CUBLX_DIR)
 
-$(NAME): $(MLX) $(OBJS)
+$(NAME): $(CUBLX) $(OBJS)
 	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(MAKE) -C $(MLX_DIR) clean
+	$(MAKE) -C $(CUBLX_DIR) clean
 	rm -f $(OBJS)
 
 fclean: clean

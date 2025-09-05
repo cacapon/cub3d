@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:21:15 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/02 17:31:15 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:22:04 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	get_tex_x(t_ray *ray, t_img *img)
 	}
 	else
 		wall_x = ray->pos_x - floor(ray->pos_x);
-	ray->tex_x = (int)(wall_x * img->width);
+	ray->tex_x = (int)(wall_x * img->size.x);
 }
 
 void	ray_casting(t_data *data, int i)

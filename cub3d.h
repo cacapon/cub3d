@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/02 16:24:49 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:21:10 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../minilibx-linux/mlx.h"
+# include "cublx.h"
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
@@ -33,6 +33,7 @@
 # define LEFT 2
 # define RIGHT 3
 
+/*
 typedef struct s_img
 {
 	void		*img;
@@ -43,6 +44,7 @@ typedef struct s_img
 	int			width;
 	int			height;
 }				t_img;
+*/
 
 typedef struct s_textures
 {

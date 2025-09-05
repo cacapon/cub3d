@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 13:06:04 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 20:25:52 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:21:54 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	load_xpm(t_data *data, t_img *img, char *path)
 {
-	img->img = mlx_xpm_file_to_image(data->mlx, path, &img->width,
-			&img->height);
+	img->img = mlx_xpm_file_to_image(data->mlx, path, &img->size.x,
+			&img->size.y);
 	if (!img->img)
 		exit_game(data, 1);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
