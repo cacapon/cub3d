@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:12 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/05 19:51:37 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 20:18:32 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 // TODO
 int	dest(t_cublx *cublx)
 {
+	t_data	*data;
+	
+	data = cublx->user->param;
+	cublx->free_tex(cublx, &data->textures.north);
+	cublx->free_tex(cublx, &data->textures.east);
+	cublx->free_tex(cublx, &data->textures.west);
+	cublx->free_tex(cublx, &data->textures.south);
+	cublx_camera_del(&data->player.camera);
+	free_array(data->map);
+	free(data);
 	return (0);
 }
 
