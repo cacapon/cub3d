@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/05 19:34:27 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 19:50:00 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void			free_array(char **array);
 void			init_game(t_data *data);
 void			load_all_textures(t_cublx *cublx, t_data *data);
 int				game_loop(t_cublx *cublx);
-int 			draw_buffer(t_cublx *cublx);
+int				draw_buffer(t_cublx *cublx);
 int				destroy_window(t_data *data);
 void			exit_game(t_data *data, int status);
 int				key_press(int keycode, t_data *data);

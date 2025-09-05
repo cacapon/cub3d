@@ -6,14 +6,14 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:12 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/05 19:36:24 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 19:51:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // TODO
-int dest(t_cublx *cublx)
+int	dest(t_cublx *cublx)
 {
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/05 19:37:34 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 19:49:08 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	_init_rc(t_raycasting *rc, t_data *data)
 }
 
 // レイキャスティングを行った上でバッファをウィンドウに表示
-int draw_buffer(t_cublx *cublx)
+int	draw_buffer(t_cublx *cublx)
 {
 	t_data			*data;
 	t_raycasting	rc;
