@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/05 19:16:05 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 20:15:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_cublx
 	int			(*btnp)(t_cublx *self, int key_code);
 	int			(*quit)(t_cublx *self, int sts_code);
 	int			(*load_xpm)(t_cublx *self, t_cublx_img *img, char *xpm_path);
-	int			(*free_tex)(t_cublx *self, t_cublx_img **tex);
+	int			(*free_tex)(t_cublx *self, t_cublx_img *tex);
 	int			(*raycasting)(t_cublx *self, t_camera *camera, t_raycasting rc);
 }				t_cublx;
 
@@ -108,7 +108,7 @@ int		_cublx_btnp(t_cublx *self, int keycode);
 int		_cublx_quit(t_cublx *self, int stscode);
 int		_cublx_loop(t_cublx *cublx);
 int		_cublx_load_xpm(t_cublx *self, t_cublx_img *img, char *xpm_path);
-int		_cublx_free_tex(t_cublx *self, t_cublx_img **tex);
+int		_cublx_free_tex(t_cublx *self, t_cublx_img *tex);
 int		_cublx_raycasting(t_cublx *self, t_camera *camera, t_raycasting rc);
 void	_cublx_draw_line(t_cublx *self, t_camera *camera, t_raycasting rc);
 
