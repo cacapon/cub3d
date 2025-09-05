@@ -6,12 +6,13 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:46:39 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/05 18:21:38 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 19:24:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
 void	draw_ceiling_in_vertical_line(t_ray *ray)
 {
 	int	start;
@@ -82,3 +83,4 @@ void	draw_floor_in_vertical_line(t_ray *ray)
 		y++;
 	}
 }
+*/

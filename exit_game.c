@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:13:16 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 19:13:19 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/05 19:40:08 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,6 @@ static void	cleanup_textures(t_data *data)
 		mlx_destroy_image(data->mlx, data->textures.west.img);
 }
 
-void	free_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
 static void	cleanup_buffers(t_data *data)
 {
 	if (data->front_buffer.img)
@@ -55,11 +42,11 @@ void	exit_game(t_data *data, int status)
 	if (!data)
 		exit(status);
 	cleanup_textures(data);
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
+	//if (data->win)
+	//	mlx_destroy_window(data->mlx, data->win);
 	if (data->map)
 		free_array(data->map);
-	cleanup_buffers(data);
+	//cleanup_buffers(data);
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);

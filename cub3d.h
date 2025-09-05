@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/05 18:21:10 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 19:34:27 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,6 @@
 # define LEFT 2
 # define RIGHT 3
 
-/*
-typedef struct s_img
-{
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			width;
-	int			height;
-}				t_img;
-*/
-
 typedef struct s_textures
 {
 	t_img		north;
@@ -56,6 +43,7 @@ typedef struct s_textures
 
 typedef struct s_player
 {
+	t_camera	*camera;
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;
@@ -73,14 +61,9 @@ typedef struct s_player
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
 	t_textures	textures;
 	int			floor_color;
 	int			ceiling_color;
-	t_img		front_buffer;
-	t_img		back_buffer;
-	int			current_buffer;
 	char		**map;
 	t_player	player;
 }				t_data;
@@ -105,8 +88,9 @@ typedef struct s_ray
 void			read_map(t_data *data);
 void			free_array(char **array);
 void			init_game(t_data *data);
-void			load_all_textures(t_data *data);
-int				game_loop(t_data *data);
+void			load_all_textures(t_cublx *cublx, t_data *data);
+int				game_loop(t_cublx *cublx);
+int 			draw_buffer(t_cublx *cublx);
 int				destroy_window(t_data *data);
 void			exit_game(t_data *data, int status);
 int				key_press(int keycode, t_data *data);

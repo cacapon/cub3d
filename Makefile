@@ -6,22 +6,18 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 17:48:57 by yookamot          #+#    #+#              #
-#    Updated: 2025/09/05 18:16:41 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/09/05 19:45:46 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-SRCS = draw_vertical_line.c \
-        exit_game.c \
+SRCS =  main.c \
         game_loop.c \
         init_game.c \
-        load_textures.c \
-        main.c \
-        player_movement.c \
-        ray_casting.c \
         read_map.c \
-        move_player.c
+        load_textures.c \
+        free_array.c
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc

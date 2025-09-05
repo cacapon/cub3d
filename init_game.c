@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:15:23 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/02 17:02:27 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/05 19:43:32 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,16 @@
 // player構造体の初期化
 static void	init_player(t_data *data)
 {
-	data->player.angle = PI * 3 / 2;
-	data->player.pos_x = 2.5;
-	data->player.pos_y = 4.5;
-	data->player.dir_x = cos(data->player.angle);
-	data->player.dir_y = sin(data->player.angle);
-	data->player.move_speed = 0.01;
-	data->player.rot_speed = 0.5 * PI / 180;
-	data->player.move_forward = 0;
-	data->player.move_backward = 0;
-	data->player.strafe_left = 0;
-	data->player.strafe_right = 0;
-	data->player.turn_left = 0;
-	data->player.turn_right = 0;
-}
+	double	angle;
+	t_vec2	p_pos;
+	t_vec2	p_dir;
 
-// bufferの初期化
-static void	init_buffer(t_data *data)
-{
-	data->front_buffer.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->front_buffer.addr = mlx_get_data_addr(data->front_buffer.img,
-			&data->front_buffer.bits_per_pixel, &data->front_buffer.line_length,
-			&data->front_buffer.endian);
-	data->back_buffer.img = NULL;
-	data->back_buffer.addr = NULL;
-	data->current_buffer = 0;
+	angle = PI * 3 / 2;
+	p_pos = cublx_vec2(2.5, 4.5);
+	p_dir = cublx_vec2(cos(angle), sin(angle));
+	data->player.camera = cublx_camera_new(p_pos, p_dir, 66.0);
+	data->player.move_speed = 0.04;
+	data->player.rot_speed = 0.04;
 }
 
 // data構造体の初期化
@@ -52,5 +37,4 @@ void	init_game(t_data *data)
 	data->floor_color = 16711680;
 	data->ceiling_color = 255;
 	init_player(data);
-	init_buffer(data);
 }
