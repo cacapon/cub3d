@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+         #
+#    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 17:48:57 by yookamot          #+#    #+#              #
-#    Updated: 2025/09/02 16:06:42 by yookamot         ###   ########.fr        #
+#    Updated: 2025/09/05 17:01:01 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ SRCS = draw_vertical_line.c \
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc
-CFLAGS = -I./minilibx-linux
-LDFLAGS = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lz -g
+CFLAGS = -I./libs/minilibx-linux
+LDFLAGS = -L./libs/minilibx-linux -lmlx -lXext -lX11 -lm -lz -g
 
-MLX_DIR = ./minilibx-linux
+MLX_DIR = ./libs/minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
 
 all: $(NAME)
