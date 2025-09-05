@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 17:09:53 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 19:16:05 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ typedef struct s_raycasting
 	int		ceiling_color;
 	int		floor_color;
 	int		wall_color;
-	t_img	*texture_n;
-	t_img	*texture_e;
-	t_img	*texture_w;
-	t_img	*texture_s;
+	t_img	texture_n;
+	t_img	texture_e;
+	t_img	texture_w;
+	t_img	texture_s;
 	t_vec2i	grid_pos;
 	t_vec2i	step;
 	t_vec2	ray_dir;
@@ -94,7 +94,7 @@ void	cublx_set_hooks(t_cublx *cublx, int (*update)(t_cublx *),
 			int (*draw)(t_cublx *), int (*destructor)(t_cublx *));
 void	cublx_set_user_param(t_cublx *cublx, void *user_param);
 void	cublx_run(t_cublx *cublx);
-int		cublx_get_tex_color(t_cublx_img *tex, int x, int y);
+int		cublx_get_tex_color(t_cublx_img tex, int x, int y);
 
 // private
 int		_allocate_view(t_cublx_img *view, t_cublx *cublx, int w, int h);

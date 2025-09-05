@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:00:21 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/05 18:02:55 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 19:16:52 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ static t_data	*init_data(void)
 	data->player = cublx_camera_new(p_pos, p_dir, 66.0);
 	if (!data->player)
 		return (free(data), NULL);
-	data->textures.north = cublx_calloc(1, sizeof(t_img));
-	data->textures.east = cublx_calloc(1, sizeof(t_img));
-	data->textures.west = cublx_calloc(1, sizeof(t_img));
-	data->textures.south = cublx_calloc(1, sizeof(t_img));
 	data->map = cublx_calloc(5, sizeof(char *));
 	data->map[0] = strdup("11111");
 	data->map[1] = strdup("10001");
@@ -66,14 +62,6 @@ static int	dest(t_cublx *cublx)
 			free(data->map[i]);
 		i++;
 	}
-	if (data->textures.north && data->textures.north->img)
-		cublx->free_tex(cublx, &data->textures.north);
-	if (data->textures.east && data->textures.east->img)
-		cublx->free_tex(cublx, &data->textures.east);
-	if (data->textures.west && data->textures.west->img)
-		cublx->free_tex(cublx, &data->textures.west);
-	if (data->textures.south && data->textures.south->img)
-		cublx->free_tex(cublx, &data->textures.south);
 	free(data->map);
 	free(data);
 	return (0);
@@ -137,10 +125,10 @@ int	main(void)
 	param = init_data();
 	cublx = cublx_new(1048, 768, "test");
 	cublx_set_hooks(cublx, update, draw, dest);
-	cublx->load_xpm(cublx, param->textures.north, "textures/north.xpm");
-	cublx->load_xpm(cublx, param->textures.south, "textures/south.xpm");
-	cublx->load_xpm(cublx, param->textures.west, "textures/west.xpm");
-	cublx->load_xpm(cublx, param->textures.east, "textures/east.xpm");
+	cublx->load_xpm(cublx, &param->textures.north, "textures/north.xpm");
+	cublx->load_xpm(cublx, &param->textures.south, "textures/south.xpm");
+	cublx->load_xpm(cublx, &param->textures.west, "textures/west.xpm");
+	cublx->load_xpm(cublx, &param->textures.east, "textures/east.xpm");
 	cublx_set_user_param(cublx, param);
 	cublx_run(cublx);
 	cublx_del(&cublx);
