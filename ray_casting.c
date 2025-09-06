@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:21:15 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/02 17:31:15 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:32:15 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	get_distance_to_wall(t_ray *ray)
 static void	get_wall_height(t_ray *ray)
 {
 	double	projection_plane_distance;
-	double	fixed_distance;
 
 	if (FOV == 90)
 		projection_plane_distance = WIDTH / 2.0;
@@ -75,11 +74,9 @@ static void	get_colligion_direction(t_ray *ray)
 static void	get_tex_x(t_ray *ray, t_img *img)
 {
 	double	prev_x;
-	double	prev_y;
 	double	wall_x;
 
 	prev_x = ray->pos_x - ray->dir_x * STEP;
-	prev_y = ray->pos_y - ray->dir_y * STEP;
 	if ((int)prev_x != (int)ray->pos_x)
 	{
 		wall_x = ray->pos_y - floor(ray->pos_y);
@@ -107,7 +104,7 @@ void	ray_casting(t_data *data, int i)
 		tex_img = &data->textures.north;
 	else if (ray.hit_wall == LEFT)
 		tex_img = &data->textures.east;
-	else if (ray.hit_wall == RIGHT)
+	else
 		tex_img = &data->textures.west;
 	get_tex_x(&ray, tex_img);
 	draw_ceiling_in_vertical_line(&ray);

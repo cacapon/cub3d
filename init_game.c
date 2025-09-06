@@ -6,20 +6,30 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:15:23 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/02 17:02:27 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/06 18:45:21 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	init_texture(t_img *tex)
+{
+	tex->img = NULL;
+	tex->addr = NULL;
+	tex->bits_per_pixel = 0;
+	tex->line_length = 0;
+	tex->endian = 0;
+	tex->width = 0;
+	tex->height = 0;
+}
+
 // player構造体の初期化
 static void	init_player(t_data *data)
 {
-	data->player.angle = PI * 3 / 2;
-	data->player.pos_x = 2.5;
-	data->player.pos_y = 4.5;
-	data->player.dir_x = cos(data->player.angle);
-	data->player.dir_y = sin(data->player.angle);
+	data->player.pos_x = 0.0;
+	data->player.pos_y = 0.0;
+	data->player.dir_x = 0.0;
+	data->player.dir_y = 0.0;
 	data->player.move_speed = 0.01;
 	data->player.rot_speed = 0.5 * PI / 180;
 	data->player.move_forward = 0;
@@ -28,6 +38,7 @@ static void	init_player(t_data *data)
 	data->player.strafe_right = 0;
 	data->player.turn_left = 0;
 	data->player.turn_right = 0;
+	data->player.angle = 0.0;
 }
 
 // bufferの初期化
@@ -45,12 +56,19 @@ static void	init_buffer(t_data *data)
 // data構造体の初期化
 void	init_game(t_data *data)
 {
-	data->textures.north.img = NULL;
-	data->textures.south.img = NULL;
-	data->textures.east.img = NULL;
-	data->textures.west.img = NULL;
-	data->floor_color = 16711680;
-	data->ceiling_color = 255;
-	init_player(data);
+	data->mlx = mlx_init();
+	if (!data->mlx)
+		error_exit(data, -1, "Failed to initialize MiniLibX.");
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
+	if (!data->win)
+		error_exit(data, -1, "Failed to create window.");
+	init_texture(&data->textures.north);
+	init_texture(&data->textures.south);
+	init_texture(&data->textures.east);
+	init_texture(&data->textures.west);
+	data->floor_color = -1;
+	data->ceiling_color = -1;
 	init_buffer(data);
+	data->map = NULL;
+	init_player(data);
 }

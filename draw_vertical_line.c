@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:46:39 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 19:54:10 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:25:23 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_ceiling_in_vertical_line(t_ray *ray)
 	if (end < 0)
 		end = 0;
 	dst = (int *)ray->data->front_buffer.addr;
-	y = 0;
+	y = start;
 	while (y < end)
 	{
 		dst[y * WIDTH + ray->i] = ray->data->ceiling_color;

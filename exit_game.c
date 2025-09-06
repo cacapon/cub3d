@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:13:16 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 19:13:19 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/06 18:20:24 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	destroy_window(t_data *data)
 {
 	exit_game(data, 0);
+	return (0);
 }
 
 static void	cleanup_textures(t_data *data)

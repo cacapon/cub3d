@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/02 16:24:49 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/06 20:00:02 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../minilibx-linux/mlx.h"
+# include "get_next_line/get_next_line.h"
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
@@ -100,10 +101,8 @@ typedef struct s_ray
 	double		tex_pos;
 }				t_ray;
 
-void			read_map(t_data *data);
 void			free_array(char **array);
 void			init_game(t_data *data);
-void			load_all_textures(t_data *data);
 int				game_loop(t_data *data);
 int				destroy_window(t_data *data);
 void			exit_game(t_data *data, int status);
@@ -114,5 +113,17 @@ void			draw_ceiling_in_vertical_line(t_ray *ray);
 void			draw_wall_in_vertical_line(t_ray *ray, t_img *img);
 void			draw_floor_in_vertical_line(t_ray *ray);
 void			move_player(t_data *data, double dir_x, double dir_y);
+char			**ft_split(char const *s, char c);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				ft_atoi(const char *str);
+char			*ft_strdup(const char *src);
+char			*ft_strtrim(const char *s1, const char *set);
+char			*ft_strjoin(const char *str1, const char *str2);
+void			parse_cub_file(t_data *data, char *file);
+void			parse_texture_and_color(t_data *data, int fd);
+void			parse_map(t_data *data, int fd);
+void			validate_map(t_data *data, int fd);
+void			load_xpm(t_data *data, t_img *img, char *path, int fd);
+void			error_exit(t_data *data, int fd, char *msg);
 
 #endif

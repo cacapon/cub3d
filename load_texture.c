@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_textures.c                                    :+:      :+:    :+:   */
+/*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 13:06:04 by yookamot          #+#    #+#             */
-/*   Updated: 2025/08/26 20:25:52 by yookamot         ###   ########.fr       */
+/*   Created: 2025/09/06 19:59:24 by yookamot          #+#    #+#             */
+/*   Updated: 2025/09/06 20:01:44 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	load_xpm(t_data *data, t_img *img, char *path)
+void	load_xpm(t_data *data, t_img *img, char *path, int fd)
 {
-	img->img = mlx_xpm_file_to_image(data->mlx, path, &img->width,
+	char	*trimmed;
+
+	trimmed = ft_strtrim(path, " \n\t\r");
+	if (!trimmed)
+		error_exit(data, fd, "Failed to allocate memory.");
+	img->img = mlx_xpm_file_to_image(data->mlx, trimmed, &img->width,
 			&img->height);
+	free(trimmed);
 	if (!img->img)
-		exit_game(data, 1);
+		error_exit(data, fd, "Failed to load texture.");
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	if (!img->addr)
-		exit_game(data, 1);
-}
-
-// texture画像の読み込み
-void	load_all_textures(t_data *data)
-{
-	load_xpm(data, &data->textures.north, "textures/north.xpm");
-	load_xpm(data, &data->textures.south, "textures/south.xpm");
-	load_xpm(data, &data->textures.east, "textures/east.xpm");
-	load_xpm(data, &data->textures.west, "textures/west.xpm");
+		error_exit(data, fd, "Failed to get image data address.");
 }
