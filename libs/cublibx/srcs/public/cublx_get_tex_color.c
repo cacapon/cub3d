@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:08:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 16:56:50 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 19:15:50 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
  * @note *(unsigned int *)dst: Since uint is 4 bytes,
  * the RGBA information at the specified address is picked up.
  */
-int	cublx_get_tex_color(t_cublx_img *tex, int x, int y)
+int	cublx_get_tex_color(t_cublx_img tex, int x, int y)
 {
 	char	*dst;
 
-	dst = tex->addr + (y * tex->line_length + x * (tex->bits_per_pixel / 8));
+	dst = tex.addr + (y * tex.line_length + x * (tex.bits_per_pixel / 8));
 	return (*(unsigned int *)dst);
 }

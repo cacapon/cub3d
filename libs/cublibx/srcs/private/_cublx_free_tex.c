@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _cublx_camera_move.c                               :+:      :+:    :+:   */
+/*   _cublx_free_tex.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/29 13:36:14 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 10:25:46 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/09/02 17:00:46 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/09/05 20:15:25 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cublx_camera.h"
+#include "cublx.h"
+#include <stdlib.h>
 
-/**
- * @brief Move by delta in the direction of the camera.
- * 
- * @param self 
- * @param delta 
- */
-void	_cublx_camera_move(t_camera *self, t_vec2 delta)
+int	_cublx_free_tex(t_cublx *self, t_cublx_img *tex)
 {
-	self->pos.x += -delta.y * self->dir.x + delta.x * self->plane.x;
-	self->pos.y += -delta.y * self->dir.y + delta.x * self->plane.y;
+	if (tex && tex->img)
+	{
+		mlx_destroy_image(self->mlx, tex->img);
+		return (0);
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:13:58 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/01 21:10:55 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:26:02 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 
 #define MAP_HEIGHT 7
 
+// TODO: 将来的には.cubファイルから読み込む形にする必要がある。
+// 現在は暫定的に文字列を直打ちしています。
 void	read_map(t_data *data)
 {
-	data->map = (char **)malloc(sizeof(char *) * MAP_HEIGHT);
+	data->map = (char **)cublx_calloc(MAP_HEIGHT + 1, sizeof(char *));
 	if (!data->map)
 		exit(1);
 	data->map[0] = strdup("1111111111");
@@ -28,6 +30,7 @@ void	read_map(t_data *data)
 	data->map[4] = strdup("10N1001001");
 	data->map[5] = strdup("1001000001");
 	data->map[6] = strdup("1111111111");
+	data->map[MAP_HEIGHT] = NULL;
 	for (int i = 0; i < MAP_HEIGHT; i++)
 	{
 		if (!data->map[i])

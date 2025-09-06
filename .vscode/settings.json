@@ -1,6 +1,0 @@
-{
-    "C_Cpp.errorSquiggles": "disabled",
-    "inlineChat.hideOnRequest": false,
-    "github.copilot.chat.codeGeneration.useInstructionFiles": false,
-    "github.copilot.chat.copilotDebugCommand.enabled": false
-}

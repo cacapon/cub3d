@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _cublx_free_tex.c                                  :+:      :+:    :+:   */
+/*   demo.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/02 17:00:46 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 17:21:01 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/09/01 18:27:22 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/09/05 19:13:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cublx.h"
-#include <stdlib.h>
+#ifndef DEMO_H
+# define DEMO_H
 
-int	_cublx_free_tex(t_cublx *self, t_cublx_img **tex)
+# include "cublx.h"
+
+typedef t_cublx_camera	t_camera;
+
+typedef struct s_textures
 {
-	t_cublx_img	*_tex;
+	t_img		north;
+	t_img		south;
+	t_img		east;
+	t_img		west;
+}				t_textures;
 
-	_tex = *tex;
-	if (_tex && _tex->img)
-	{
-		mlx_destroy_image(self->mlx, _tex->img);
-		free(_tex);
-		*tex = NULL;
-		return (0);
-	}
-	return (1);
-}
+typedef struct s_data
+{
+	t_textures	textures;
+	int			floor_color;
+	int			ceiling_color;
+	char		**map;
+	t_camera	*player;
+}				t_data;
+
+#endif

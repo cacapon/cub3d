@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:19:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 18:52:03 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/05 18:07:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUBLX_CAMERA_H
 
 # include "cublx_vec2.h"
+# include "cublx_vec2i.h"
 # include "cublx_lib.h"
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -21,6 +22,7 @@
 
 typedef struct s_cublx_camera	t_camera;
 typedef t_cublx_vec2			t_vec2;
+typedef t_cublx_vec2i			t_vec2i;
 
 typedef struct s_cublx_camera
 {
@@ -31,7 +33,7 @@ typedef struct s_cublx_camera
 
 	t_vec2	(*get_ray)(t_camera * self, int x, int w);
 	void	(*rotate)(t_camera *self, double angle);
-	void	(*move)(t_camera *self, t_vec2 delta);
+	void	(*move)(t_camera *self, t_vec2 delta, char **map, double margin);
 	void	(*set_fov)(t_camera *self, double fov_deg);
 }			t_cublx_camera;
 
@@ -41,7 +43,8 @@ int			cublx_camera_del(t_camera **camera);
 
 // methods
 t_vec2		_cublx_camera_get_ray(t_camera *self, int x, int w);
-void		_cublx_camera_move(t_camera *self, t_vec2 delta);
+void		_cublx_camera_move(
+				t_camera *self, t_vec2 delta, char **map, double margin);
 void		_cublx_camera_rotate(t_camera *self, double angle);
 void		_cublx_camera_set_fov(t_camera *self, double fov_deg);
 
