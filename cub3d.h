@@ -6,15 +6,15 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/06 20:00:02 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/07 19:02:18 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../minilibx-linux/mlx.h"
 # include "get_next_line/get_next_line.h"
+# include "mlx.h"
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>

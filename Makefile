@@ -27,10 +27,10 @@ SRCS = draw_vertical_line.c \
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I./minilibx-linux -I./get_next_line
-LDFLAGS = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lz -g
+CFLAGS = -Wall -Wextra -Werror -I./cublibx/libs/mlx -I./get_next_line
+LDFLAGS = -L./cublibx/libs/mlx -lmlx -lXext -lX11 -lm -lz -g
 
-MLX_DIR = ./minilibx-linux
+MLX_DIR = ./cublibx/libs/mlx
 MLX = $(MLX_DIR)/libmlx.a
 
 all: $(NAME)
