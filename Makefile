@@ -1,6 +1,6 @@
 NAME = cub3D
 
-# GNL ソース
+# GNL ソース (コピーで管理)
 GNL_SRCS = get_next_line/get_next_line.c \
            get_next_line/get_next_line_utils.c
 
@@ -21,6 +21,7 @@ SRCS = draw_vertical_line.c \
         utils.c \
         ft_split.c \
         ft_strtrim.c \
+        load_texture.c \
         $(GNL_SRCS)
 
 OBJS = $(SRCS:.c=.o)
