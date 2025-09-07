@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/07 19:40:59 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/07 20:21:31 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void			draw_wall_in_vertical_line(t_ray *ray, t_img *img);
 void			draw_floor_in_vertical_line(t_ray *ray);
 void			move_player(t_data *data, double dir_x, double dir_y);
 char			**ft_split(char const *s, char c);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
+bool			cub_strcmp(const char *s1, const char *s2);
 int				ft_atoi(const char *str);
 char			*ft_strdup(const char *src);
 char			*ft_strtrim(const char *s1, const char *set);

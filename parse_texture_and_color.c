@@ -6,23 +6,11 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 14:27:03 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/06 19:59:45 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/07 20:38:26 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static char	*skip_space(char *line, t_data *data, int fd)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] == ' ')
-		i++;
-	if (!line[i])
-		error_exit(data, fd, "Texture path is missing.");
-	return (line + i);
-}
 
 static int	parse_color(char *line, t_data *data, int fd)
 {
@@ -50,28 +38,25 @@ static int	parse_color(char *line, t_data *data, int fd)
 	return ((r << 16) | (g << 8) | b);
 }
 
-static void	set_texture_and_color(t_data *data, char *line, int fd)
+static void	set_texture_and_color(t_data *data, char **array, int fd)
 {
-	if (!ft_strncmp(line, "NO", 2))
-		load_xpm(data, &data->textures.north, skip_space(line + 3, data, fd),
-			fd);
-	else if (!ft_strncmp(line, "SO", 2))
-		load_xpm(data, &data->textures.south, skip_space(line + 3, data, fd),
-			fd);
-	else if (!ft_strncmp(line, "WE", 2))
-		load_xpm(data, &data->textures.west, skip_space(line + 3, data, fd),
-			fd);
-	else if (!ft_strncmp(line, "EA", 2))
-		load_xpm(data, &data->textures.east, skip_space(line + 3, data, fd),
-			fd);
-	else if (!ft_strncmp(line, "F", 1))
-		data->floor_color = parse_color(skip_space(line + 2, data, fd), data,
-				fd);
-	else if (!ft_strncmp(line, "C", 1))
-		data->ceiling_color = parse_color(skip_space(line + 2, data, fd), data,
-				fd);
+	if (cub_strcmp(array[0], "NO"))
+		load_xpm(data, &data->textures.north, array[1], fd);
+	else if (cub_strcmp(array[0], "SO"))
+		load_xpm(data, &data->textures.south, array[1], fd);
+	else if (cub_strcmp(array[0], "WE"))
+		load_xpm(data, &data->textures.west, array[1], fd);
+	else if (cub_strcmp(array[0], "EA"))
+		load_xpm(data, &data->textures.east, array[1], fd);
+	else if (cub_strcmp(array[0], "F"))
+		data->floor_color = parse_color(array[1], data, fd);
+	else if (cub_strcmp(array[0], "C"))
+		data->ceiling_color = parse_color(array[1], data, fd);
 	else
+	{
+		free_array(array);
 		error_exit(data, fd, "Invalid element identifier.");
+	}
 }
 
 static bool	check_skip_line(char *line)
@@ -86,6 +71,7 @@ static bool	check_skip_line(char *line)
 			return (false);
 		i++;
 	}
+	free(line);
 	return (true);
 }
 
@@ -93,6 +79,7 @@ void	parse_texture_and_color(t_data *data, int fd)
 {
 	int		i;
 	char	*line;
+	char	**array;
 
 	i = 0;
 	while (i < 6)
@@ -102,8 +89,12 @@ void	parse_texture_and_color(t_data *data, int fd)
 			error_exit(data, fd, "Failed to allocate memory.");
 		if (check_skip_line(line))
 			continue ;
-		set_texture_and_color(data, line, fd);
+		array = ft_split(line, ' ');
 		free(line);
+		if (!array)
+			error_exit(data, fd, "Failed to allocate memory.");
+		set_texture_and_color(data, array, fd);
+		free_array(array);
 		i++;
 	}
 	if (!data->textures.north.img || !data->textures.south.img
