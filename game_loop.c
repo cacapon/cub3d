@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/02 17:31:53 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/07 19:41:20 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	draw_buffer(t_data *data)
 		ray_casting(data, i);
 		i++;
 	}
+	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->front_buffer.img, 0, 0);
 }
 

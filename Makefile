@@ -22,6 +22,7 @@ SRCS = draw_vertical_line.c \
         ft_split.c \
         ft_strtrim.c \
         load_texture.c \
+        draw_minimap.c \
         $(GNL_SRCS)
 
 OBJS = $(SRCS:.c=.o)
