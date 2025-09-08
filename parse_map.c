@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 14:27:55 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/06 19:07:24 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:32:09 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static void	read_map(t_data *data, int fd)
 	{
 		map_line = ft_strjoin_gnl(map_line, line);
 		if (!map_line)
-			error_exit(data, fd, "Failed to allocate memory.");
+			error_exit(data, fd, NULL, "Failed to allocate memory.");
 		free(line);
 		line = get_next_line(fd);
 	}
 	data->map = ft_split(map_line, '\n');
 	free(map_line);
 	if (!data->map)
-		error_exit(data, fd, "Failed to allocate memory.");
+		error_exit(data, fd, NULL, "Failed to allocate memory.");
 }
 
 static char	*add_space(char *line, int len, int max_width)
@@ -78,7 +78,7 @@ static void	reshape_map(t_data *data, int fd)
 		len = ft_strlen(data->map[i]);
 		data->map[i] = add_space(data->map[i], len, max_width);
 		if (!data->map[i])
-			error_exit(data, fd, "Failed to allocate memory.");
+			error_exit(data, fd, NULL, "Failed to allocate memory.");
 		i++;
 	}
 }

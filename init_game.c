@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:15:23 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/06 18:45:21 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:31:18 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void	init_game(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		error_exit(data, -1, "Failed to initialize MiniLibX.");
+		error_exit(data, -1, NULL, "Failed to initialize MiniLibX.");
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
 	if (!data->win)
-		error_exit(data, -1, "Failed to create window.");
+		error_exit(data, -1, NULL, "Failed to create window.");
 	init_texture(&data->textures.north);
 	init_texture(&data->textures.south);
 	init_texture(&data->textures.east);

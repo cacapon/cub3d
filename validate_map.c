@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 15:44:28 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/06 20:02:41 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:33:59 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	check_letter(t_data *data, int fd)
 				&& data->map[i][j] != ' ' && data->map[i][j] != 'N'
 				&& data->map[i][j] != 'E' && data->map[i][j] != 'W'
 				&& data->map[i][j] != 'S')
-				error_exit(data, fd, "Invalid character in map.");
+				error_exit(data, fd, NULL, "Invalid character in map.");
 			j++;
 		}
 		i++;
@@ -67,7 +67,8 @@ static void	check_player(t_data *data, int fd)
 				|| data->map[i][j] == 'W' || data->map[i][j] == 'S')
 			{
 				if (player)
-					error_exit(data, fd, "Too many player start positions.");
+					error_exit(data, fd, NULL,
+						"Too many player start positions.");
 				player = true;
 				set_player(data, i, j, data->map[i][j]);
 			}
@@ -76,7 +77,7 @@ static void	check_player(t_data *data, int fd)
 		i++;
 	}
 	if (!player)
-		error_exit(data, fd, "No player start position found.");
+		error_exit(data, fd, NULL, "No player start position found.");
 }
 
 static void	check_map_enclosure(t_data *data, int fd)
@@ -92,11 +93,12 @@ static void	check_map_enclosure(t_data *data, int fd)
 		j = 0;
 		while (m[i][j])
 		{
-			if (m[i][j] == '0')
+			if (m[i][j] == '0' || m[i][j] == 'N' || m[i][j] == 'E'
+				|| m[i][j] == 'W' || m[i][j] == 'S')
 			{
 				if (i == 0 || !m[i + 1] || j == 0 || m[i - 1][j] == ' ' || m[i
 					+ 1][j] == ' ' || m[i][j - 1] == ' ' || m[i][j + 1] == ' ')
-					error_exit(data, fd, "Map is not closed by walls.");
+					error_exit(data, fd, NULL, "Map is not closed by walls.");
 			}
 			j++;
 		}

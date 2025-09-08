@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:12 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/06 18:33:29 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:31:36 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	main(int argc, char **argv)
 	t_data	*data;
 
 	if (argc != 2)
-		error_exit(NULL, -1, "Invalid number of arguments.");
+		error_exit(NULL, -1, NULL, "Invalid number of arguments.");
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
-		error_exit(NULL, -1, "Failed to allocate memory.");
+		error_exit(NULL, -1, NULL, "Failed to allocate memory.");
 	init_game(data);
 	parse_cub_file(data, argv[1]);
 	mlx_loop_hook(data->mlx, game_loop, data);

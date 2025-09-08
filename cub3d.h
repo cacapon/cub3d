@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/07 20:21:31 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:35:38 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ void			parse_cub_file(t_data *data, char *file);
 void			parse_texture_and_color(t_data *data, int fd);
 void			parse_map(t_data *data, int fd);
 void			validate_map(t_data *data, int fd);
-void			load_xpm(t_data *data, t_img *img, char *path, int fd);
-void			error_exit(t_data *data, int fd, char *msg);
+void			load_xpm(t_data *data, t_img *img, char **array, int fd);
+void			error_exit(t_data *data, int fd, char **array, char *msg);
 void			draw_minimap(t_data *data);
 
 #endif
