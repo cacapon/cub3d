@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:19:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/05 18:07:37 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 16:35:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_cublx_camera
 	void	(*rotate)(t_camera *self, double angle);
 	void	(*move)(t_camera *self, t_vec2 delta, char **map, double margin);
 	void	(*set_fov)(t_camera *self, double fov_deg);
+	void	(*set_view)(t_camera *self, t_vec2 pos, t_vec2 dir, double fov_deg);
 }			t_cublx_camera;
 
 // public
@@ -47,5 +48,8 @@ void		_cublx_camera_move(
 				t_camera *self, t_vec2 delta, char **map, double margin);
 void		_cublx_camera_rotate(t_camera *self, double angle);
 void		_cublx_camera_set_fov(t_camera *self, double fov_deg);
+
+void	_cublx_camera_set_view(
+			t_camera *self, t_vec2 pos, t_vec2 dir, double fov_deg);
 
 #endif

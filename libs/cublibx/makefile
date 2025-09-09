@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/20 07:19:09 by ttsubo            #+#    #+#              #
-#    Updated: 2025/09/09 16:18:44 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/09/09 16:45:07 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ PRI_SRCS = 	_cublx_loop.c \
 			_cublx_btn.c _cublx_btnp.c _cublx_pset.c _cublx_quit.c \
 			_cublx_load_xpm.c _cublx_free_tex.c _cublx_raycasting.c _cublx_draw_line.c \
 			_cublx_camera_get_ray.c _cublx_camera_move.c \
-			_cublx_camera_rotate.c _cublx_camera_set_fov.c \
+			_cublx_camera_rotate.c _cublx_camera_set_fov.c _cublx_camera_set_view.c \
 			_cublx_key_just_pressed_init.c _cublx_key_state_init.c \
 			_cublx_key_pressed.c _cublx_key_released.c 
 PUB_SRCS = 	cublx_del.c cublx_new.c \

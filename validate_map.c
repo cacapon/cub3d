@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 15:44:28 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 15:22:28 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 16:49:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,45 +36,52 @@ static void	check_letter(t_cublx *cublx, int fd)
 	}
 }
 
-static void	set_player(t_data *data, int i, int j, char dir)
+static void	set_player(t_cublx *cublx, t_vec2i pos, char dir, int fd)
 {
+	t_vec2	vec_dir;
+	t_vec2	player_pos;
+	t_data	*data;
+
 	if (dir == 'N')
-		data->player.camera->dir = cublx_vec2(0.0, -1.0);
+		vec_dir = cublx_vec2(0.0, -1.0);
 	else if (dir == 'S')
-		data->player.camera->dir = cublx_vec2(0.0, 1.0);
+		vec_dir = cublx_vec2(0.0, 1.0);
 	else if (dir == 'E')
-		data->player.camera->dir = cublx_vec2(1.0, 0.0);
+		vec_dir = cublx_vec2(1.0, 0.0);
 	else if (dir == 'W')
-		data->player.camera->dir = cublx_vec2(-1.0, 0.0);
-	data->player.camera->pos = cublx_vec2((double)j + 0.5, (double)i + 0.5);
+		vec_dir = cublx_vec2(-1.0, 0.0);
+	else
+		error_exit(cublx, fd, "Invalid dir");
+	data = cublx->user->param;
+	player_pos = cublx_vec2((double)pos.x + 0.5, (double)pos.y + 0.5);
+	data->player.camera->set_view(data->player.camera, player_pos, vec_dir, FOV);
 }
 
 static void	check_player(t_cublx *cublx, int fd)
 {
-	int		i;
-	int		j;
+	t_vec2i	pos;
 	bool	player;
 	t_data	*data;
 
-	i = 0;
+	pos.y = 0;
 	player = false;
 	data = cublx->user->param;
-	while (data->map[i])
+	while (data->map[pos.y])
 	{
-		j = 0;
-		while (data->map[i][j])
+		pos.x = 0;
+		while (data->map[pos.y][pos.x])
 		{
-			if (data->map[i][j] == 'N' || data->map[i][j] == 'E'
-				|| data->map[i][j] == 'W' || data->map[i][j] == 'S')
+			if (data->map[pos.y][pos.x] == 'N' || data->map[pos.y][pos.x] == 'E'
+				|| data->map[pos.y][pos.x] == 'W' || data->map[pos.y][pos.x] == 'S')
 			{
 				if (player)
 					error_exit(cublx, fd, "Too many player start positions.");
 				player = true;
-				set_player(data, i, j, data->map[i][j]);
+				set_player(cublx, pos, data->map[pos.y][pos.x], fd);
 			}
-			j++;
+			pos.x++;
 		}
-		i++;
+		pos.y++;
 	}
 	if (!player)
 		error_exit(cublx, fd, "No player start position found.");
