@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:18:54 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/08 23:35:32 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:00:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static void	draw_player_position_in_minimap(t_cublx *cublx)
 		x = 0;
 		while (x < 5)
 		{
-			draw_vec.x = x + (int)data->player.camera->pos.x;
-			draw_vec.y = y + (int)data->player.camera->pos.y;
+			draw_vec.x = (int)(data->player.camera->pos.x * 10) + 18 + x;
+			draw_vec.y = (int)(data->player.camera->pos.y * 10) + 18 + y;
 			cublx->pset(cublx, draw_vec.x, draw_vec.y, 16711935);
 			x++;
 		}
