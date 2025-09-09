@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/08 23:26:17 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 16:21:24 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	_init_rc(t_raycasting *rc, t_data *data)
 {
 	rc->ceiling_color = data->ceiling_color;
 	rc->floor_color = data->floor_color;
+	rc->draw_pos = cublx_vec2i(0, 0);
 	rc->map = data->map;
 	rc->texture_n = data->textures.north;
 	rc->texture_e = data->textures.east;

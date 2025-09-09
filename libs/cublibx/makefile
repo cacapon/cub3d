@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/20 07:19:09 by ttsubo            #+#    #+#              #
-#    Updated: 2025/09/09 15:58:24 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/09/09 16:18:44 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,11 @@ OBJ_DIR 		= objs
 OBJ_MLX_DIR		= $(OBJ_DIR)/mlx
 OBJ_PRI_DIR		= $(OBJ_DIR)/private
 OBJ_PUB_DIR		= $(OBJ_DIR)/public
+OBJ_UTIL_DIR	= $(OBJ_PUB_DIR)/utils
 
 PRI_SRCS_DIR	= srcs/private
 PUB_SRCS_DIR	= srcs/public
+PUB_UTIL_DIR	= $(PUB_SRCS_DIR)/utils
 
 PRI_SRCS = 	_cublx_loop.c \
 			_allocate_view.c \
@@ -44,17 +46,17 @@ PUB_UTILS = cublx_calloc.c cublx_memchr.c cublx_memcpy.c cublx_memset.c \
 
 SRCS = $(addprefix $(PRI_SRCS_DIR)/, $(PRI_SRCS)) \
 	   $(addprefix $(PUB_SRCS_DIR)/, $(PUB_SRCS)) \
-	   $(addprefix $(PUB_SRCS_DIR)/utils/, $(PUB_UTILS))
+	   $(addprefix $(PUB_UTIL_DIR)/, $(PUB_UTILS))
 OBJS = $(addprefix $(OBJ_PRI_DIR)/,  $(PRI_SRCS:.c=.o)) \
 	   $(addprefix $(OBJ_PUB_DIR)/,  $(PUB_SRCS:.c=.o)) \
-	   $(addprefix $(OBJ_PUB_DIR)/utils/,  $(PUB_UTILS:.c=.o))
+	   $(addprefix $(OBJ_UTIL_DIR)/,  $(PUB_UTILS:.c=.o))
 
 
 all: $(NAME)
 
 $(NAME): $(MLX_DIR)/libmlx_Linux.a $(OBJS)
 	cd $(OBJ_DIR)/mlx && ar x ../../$<
-	ar rcs $@ $(OBJ_MLX_DIR)/*.o $(OBJ_PRI_DIR)/*.o $(OBJ_PUB_DIR)/*.o
+	ar rcs $@ $(OBJ_MLX_DIR)/*.o $(OBJ_PRI_DIR)/*.o $(OBJ_PUB_DIR)/*.o $(OBJ_UTIL_DIR)/*.o
 
 $(OBJ_PRI_DIR)/%.o: $(PRI_SRCS_DIR)/%.c
 	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@

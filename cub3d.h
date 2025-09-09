@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/08 23:43:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 15:22:16 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,14 @@ char			*ft_strtrim(const char *s1, const char *set);
 char			*ft_strjoin(const char *str1, const char *str2);
 void			parse_cub_file(t_cublx *cublx, char *file);
 void			parse_texture_and_color(t_data *data, t_cublx *cublx, int fd);
-void			parse_map(t_data *data, int fd);
-void			validate_map(t_data *data, int fd);
+void			parse_map(t_cublx *cublx, int fd);
+void			validate_map(t_cublx *cublx, int fd);
 void			draw_minimap(t_cublx *cublx);
 void			free_array(char **array);
 void			init_game(t_data *data);
 void			load_all_textures(t_cublx *cublx, t_data *data);
 int				game_loop(t_cublx *cublx);
 int				draw_buffer(t_cublx *cublx);
-void			error_exit(t_data *data, int fd, char *msg);
-void			exit_game(t_data *data, int status);
+void			error_exit(t_cublx *cublx, int fd, char *msg);
 
 #endif
