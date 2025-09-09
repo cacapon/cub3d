@@ -3,18 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:12 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/06 18:33:29 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/08 23:40:53 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// TODO
+int	dest(t_cublx *cublx)
+{
+	t_data	*data;
+	
+	data = cublx->user->param;
+	cublx->free_tex(cublx, &data->textures.north);
+	cublx->free_tex(cublx, &data->textures.east);
+	cublx->free_tex(cublx, &data->textures.west);
+	cublx->free_tex(cublx, &data->textures.south);
+	cublx_camera_del(&data->player.camera);
+	free_array(data->map);
+	free(data);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
+	t_cublx	*cublx;
 
 	if (argc != 2)
 		error_exit(NULL, -1, "Invalid number of arguments.");
@@ -23,10 +40,16 @@ int	main(int argc, char **argv)
 		error_exit(NULL, -1, "Failed to allocate memory.");
 	init_game(data);
 	parse_cub_file(data, argv[1]);
-	mlx_loop_hook(data->mlx, game_loop, data);
-	mlx_hook(data->win, DestroyNotify, 0, destroy_window, data);
-	mlx_hook(data->win, 2, 1L << 0, key_press, data);
-	mlx_hook(data->win, 3, 1L << 1, key_release, data);
-	mlx_loop(data->mlx);
+	cublx = cublx_new(WIDTH, HEIGHT, "cub3D");
+	if (!cublx)
+	{
+		free_array(data->map);
+		free(data);
+		error_exit(NULL, -1, "Failed to allocate cublx.");
+	}
+	cublx_set_hooks(cublx, game_loop, draw_buffer, dest);
+	cublx_set_user_param(cublx, data);
+	cublx_run(cublx);
+	cublx_del(&cublx);
 	return (0);
 }

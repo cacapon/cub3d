@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 15:44:28 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/06 20:02:41 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/08 23:45:35 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ static void	check_letter(t_data *data, int fd)
 	}
 }
 
+// TODO angle vector
 static void	set_player(t_data *data, int i, int j, char dir)
 {
 	if (dir == 'N')
-		data->player.angle = PI * 3 / 2;
+		data->player.camera = PI * 3 / 2;
 	else if (dir == 'S')
 		data->player.angle = PI / 2;
 	else if (dir == 'E')

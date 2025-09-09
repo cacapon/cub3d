@@ -3,62 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/07 19:41:20 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/08 23:26:17 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	rotate_player(t_data *data, double speed)
+// レイキャスティング用の構造体を初期化します。
+static void	_init_rc(t_raycasting *rc, t_data *data)
 {
-	double	len;
-
-	data->player.angle += speed;
-	if (data->player.angle < 0)
-		data->player.angle += 2 * PI;
-	if (data->player.angle > 2 * PI)
-		data->player.angle -= 2 * PI;
-	data->player.dir_x = cos(data->player.angle);
-	data->player.dir_y = sin(data->player.angle);
-	len = sqrt(data->player.dir_x * data->player.dir_x + data->player.dir_y
-			* data->player.dir_y);
-	data->player.dir_x /= len;
-	data->player.dir_y /= len;
+	rc->ceiling_color = data->ceiling_color;
+	rc->floor_color = data->floor_color;
+	rc->map = data->map;
+	rc->texture_n = data->textures.north;
+	rc->texture_e = data->textures.east;
+	rc->texture_w = data->textures.west;
+	rc->texture_s = data->textures.south;
 }
 
 // レイキャスティングを行った上でバッファをウィンドウに表示
-static void	draw_buffer(t_data *data)
+int	draw_buffer(t_cublx *cublx)
 {
-	int	i;
+	t_data			*data;
+	t_raycasting	rc;
+	int				i;
 
+	data = cublx->user->param;
+	_init_rc(&rc, data);
 	i = 0;
 	while (i < WIDTH)
 	{
-		ray_casting(data, i);
-		i++;
+		rc.draw_pos.x = i++;
+		cublx->raycasting(cublx, data->player.camera, rc);
 	}
-	draw_minimap(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->front_buffer.img, 0, 0);
+	draw_minimap(cublx);
+	return (0);
 }
 
 // 1フレームごとに実行されるループ関数
-int	game_loop(t_data *data)
+int	game_loop(t_cublx *cublx)
 {
-	if (data->player.turn_left)
-		rotate_player(data, -data->player.rot_speed);
-	if (data->player.turn_right)
-		rotate_player(data, data->player.rot_speed);
-	if (data->player.move_forward)
-		move_player(data, data->player.dir_x, data->player.dir_y);
-	if (data->player.move_backward)
-		move_player(data, -data->player.dir_x, -data->player.dir_y);
-	if (data->player.strafe_left)
-		move_player(data, data->player.dir_y, -data->player.dir_x);
-	if (data->player.strafe_right)
-		move_player(data, -data->player.dir_y, data->player.dir_x);
-	draw_buffer(data);
+	t_data		*data;
+	t_camera	*cam;
+	double		rot_spd;
+	double		mv_spd;
+
+	data = cublx->user->param;
+	cam = data->player.camera;
+	rot_spd = data->player.rot_speed;
+	mv_spd = data->player.move_speed;
+	if (cublx->btn(cublx, XK_Left))
+		cam->rotate(cam, -rot_spd);
+	if (cublx->btn(cublx, XK_Right))
+		cam->rotate(cam, rot_spd);
+	if (cublx->btn(cublx, XK_w))
+		cam->move(cam, cublx_vec2(0, -mv_spd), data->map, 0.25);
+	if (cublx->btn(cublx, XK_s))
+		cam->move(cam, cublx_vec2(0, mv_spd), data->map, 0.25);
+	if (cublx->btn(cublx, XK_a))
+		cam->move(cam, cublx_vec2(-mv_spd, 0), data->map, 0.25);
+	if (cublx->btn(cublx, XK_d))
+		cam->move(cam, cublx_vec2(mv_spd, 0), data->map, 0.25);
+	if (cublx->btnp(cublx, XK_Escape))
+		cublx->quit(cublx, EXIT_SUCCESS);
 	return (0);
 }
