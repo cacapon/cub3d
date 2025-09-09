@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _cublx_calloc.c                                    :+:      :+:    :+:   */
+/*   cublx_calloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,25 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cublx.h"
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
 
-static void	*_cublx_memset(void *b, int c, size_t len)
-{
-	size_t			i;
-	unsigned char	*ptr;
-
-	if (!b)
-		return (b);
-	i = 0;
-	ptr = (unsigned char *)b;
-	while (i < len)
-		ptr[i++] = (unsigned char)c;
-	return (b);
-}
-
-void	*_cublx_calloc(size_t count, size_t size)
+void	*cublx_calloc(size_t count, size_t size)
 {
 	void	*_block;
 
@@ -39,6 +26,6 @@ void	*_cublx_calloc(size_t count, size_t size)
 	_block = malloc(count * size);
 	if (!_block)
 		return (NULL);
-	_cublx_memset(_block, 0, count * size);
+	cublx_memset(_block, 0, count * size);
 	return (_block);
 }

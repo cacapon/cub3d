@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   _cublx_camera_get_ray.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 17:19:10 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:39:20 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/08/29 13:36:20 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/09/01 18:18:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cublx_camera.h"
 
-void	error_exit(t_cublx *cublx, int fd, char *msg)
+t_vec2	_cublx_camera_get_ray(t_camera *self, int x, int w)
 {
-	if (msg)
-	{
-		write(2, "Error\n", 6);
-		while (*msg)
-			write(2, msg++, 1);
-		write(2, "\n", 1);
-	}
-	if (fd != -1)
-	{
-		get_next_line(-42);
-		close(fd);
-	}
-	if (!cublx)
-		exit(EXIT_FAILURE);
-	else
-		cublx->quit(cublx, EXIT_FAILURE);
+	double	camera_x;
+	t_vec2	ray;
+
+	camera_x = 2.0 * x / (double)w - 1.0;
+	ray.x = self->dir.x + self->plane.x * camera_x;
+	ray.y = self->dir.y + self->plane.y * camera_x;
+	return (ray);
 }

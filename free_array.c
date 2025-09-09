@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 17:19:10 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:39:20 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/09/05 19:34:58 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/09/05 19:35:50 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <stdlib.h>
 
-void	error_exit(t_cublx *cublx, int fd, char *msg)
+void	free_array(char **array)
 {
-	if (msg)
+	int	i;
+
+	i = 0;
+	while (array[i])
 	{
-		write(2, "Error\n", 6);
-		while (*msg)
-			write(2, msg++, 1);
-		write(2, "\n", 1);
+		free(array[i]);
+		i++;
 	}
-	if (fd != -1)
-	{
-		get_next_line(-42);
-		close(fd);
-	}
-	if (!cublx)
-		exit(EXIT_FAILURE);
-	else
-		cublx->quit(cublx, EXIT_FAILURE);
+	free(array);
 }

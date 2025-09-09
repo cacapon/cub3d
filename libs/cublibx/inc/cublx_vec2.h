@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   cublx_vec2.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 17:19:10 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:39:20 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/09/01 17:52:59 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/09/02 09:56:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef CUBLX_VEC2_H
+# define CUBLX_VEC2_H
 
-void	error_exit(t_cublx *cublx, int fd, char *msg)
+typedef struct s_cublx_vec2
 {
-	if (msg)
-	{
-		write(2, "Error\n", 6);
-		while (*msg)
-			write(2, msg++, 1);
-		write(2, "\n", 1);
-	}
-	if (fd != -1)
-	{
-		get_next_line(-42);
-		close(fd);
-	}
-	if (!cublx)
-		exit(EXIT_FAILURE);
-	else
-		cublx->quit(cublx, EXIT_FAILURE);
-}
+	double		x;
+	double		y;
+}				t_cublx_vec2;
+
+t_cublx_vec2	cublx_vec2(double x, double y);	
+
+#endif

@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   demo.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 17:19:10 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:39:20 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/09/01 18:27:22 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/09/05 19:13:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef DEMO_H
+# define DEMO_H
 
-void	error_exit(t_cublx *cublx, int fd, char *msg)
+# include "cublx.h"
+
+typedef t_cublx_camera	t_camera;
+
+typedef struct s_textures
 {
-	if (msg)
-	{
-		write(2, "Error\n", 6);
-		while (*msg)
-			write(2, msg++, 1);
-		write(2, "\n", 1);
-	}
-	if (fd != -1)
-	{
-		get_next_line(-42);
-		close(fd);
-	}
-	if (!cublx)
-		exit(EXIT_FAILURE);
-	else
-		cublx->quit(cublx, EXIT_FAILURE);
-}
+	t_img		north;
+	t_img		south;
+	t_img		east;
+	t_img		west;
+}				t_textures;
+
+typedef struct s_data
+{
+	t_textures	textures;
+	int			floor_color;
+	int			ceiling_color;
+	char		**map;
+	t_camera	*player;
+}				t_data;
+
+#endif

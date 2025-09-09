@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   cublx_camera_del.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 17:19:10 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:39:20 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/08/29 13:35:15 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/09/01 18:16:46 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cublx_camera.h"
+#include <stdlib.h>
 
-void	error_exit(t_cublx *cublx, int fd, char *msg)
+/**
+ * @brief Delete the camera instance.
+ *
+ * @param camera
+ * @return int
+ */
+int	cublx_camera_del(t_camera **camera)
 {
-	if (msg)
-	{
-		write(2, "Error\n", 6);
-		while (*msg)
-			write(2, msg++, 1);
-		write(2, "\n", 1);
-	}
-	if (fd != -1)
-	{
-		get_next_line(-42);
-		close(fd);
-	}
-	if (!cublx)
-		exit(EXIT_FAILURE);
-	else
-		cublx->quit(cublx, EXIT_FAILURE);
+	if (!camera || !*camera)
+		return (1);
+	free(*camera);
+	*camera = NULL;
+	return (0);
 }

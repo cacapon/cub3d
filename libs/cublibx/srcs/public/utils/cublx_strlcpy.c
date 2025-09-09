@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   cublx_strlcpy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 17:19:10 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:39:20 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/09/09 15:47:22 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/09/09 15:48:07 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cublx.h"
 
-void	error_exit(t_cublx *cublx, int fd, char *msg)
+size_t	cublx_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	if (msg)
+	size_t	copied;
+
+	copied = 0;
+	if (dstsize == 0)
+		return (cublx_strlen(src));
+	while (copied < dstsize - 1 && *src)
 	{
-		write(2, "Error\n", 6);
-		while (*msg)
-			write(2, msg++, 1);
-		write(2, "\n", 1);
+		*dst++ = *src++;
+		copied++;
 	}
-	if (fd != -1)
-	{
-		get_next_line(-42);
-		close(fd);
-	}
-	if (!cublx)
-		exit(EXIT_FAILURE);
-	else
-		cublx->quit(cublx, EXIT_FAILURE);
+	*dst = '\0';
+	return (copied + cublx_strlen(src));
 }
