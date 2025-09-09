@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 17:19:10 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 15:11:55 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:02:50 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ void	error_exit(t_cublx *cublx, int fd, char *msg)
 	}
 	if (fd != -1)
 		close(fd);
-	cublx->quit(cublx, EXIT_FAILURE);
+	if (!cublx)
+		exit(EXIT_FAILURE);
+	else
+		cublx->quit(cublx, EXIT_FAILURE);
 }
