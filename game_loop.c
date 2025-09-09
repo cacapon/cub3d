@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:54:44 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/05 19:49:08 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:10:47 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	_init_rc(t_raycasting *rc, t_data *data)
 {
 	rc->ceiling_color = data->ceiling_color;
 	rc->floor_color = data->floor_color;
+	rc->draw_pos = cublx_vec2i(0, 0);
 	rc->map = data->map;
 	rc->texture_n = data->textures.north;
 	rc->texture_e = data->textures.east;
@@ -39,6 +40,8 @@ int	draw_buffer(t_cublx *cublx)
 		rc.draw_pos.x = i++;
 		cublx->raycasting(cublx, data->player.camera, rc);
 	}
+	draw_minimap(cublx);
+	return (0);
 }
 
 // 1フレームごとに実行されるループ関数

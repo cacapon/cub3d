@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cublx_calloc.c                                    :+:      :+:    :+:   */
+/*   cublx_strlcpy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/20 07:04:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/20 07:18:33 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/09/09 15:47:22 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/09/09 15:48:07 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cublx.h"
-#include <stddef.h>
-#include <stdint.h>
-#include <stdlib.h>
 
-void	*cublx_calloc(size_t count, size_t size)
+size_t	cublx_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	void	*_block;
+	size_t	copied;
 
-	if (count == 0 || size == 0)
-		return (malloc(0));
-	if (size > SIZE_MAX / count)
-		return (NULL);
-	_block = malloc(count * size);
-	if (!_block)
-		return (NULL);
-	cublx_memset(_block, 0, count * size);
-	return (_block);
+	copied = 0;
+	if (dstsize == 0)
+		return (cublx_strlen(src));
+	while (copied < dstsize - 1 && *src)
+	{
+		*dst++ = *src++;
+		copied++;
+	}
+	*dst = '\0';
+	return (copied + cublx_strlen(src));
 }

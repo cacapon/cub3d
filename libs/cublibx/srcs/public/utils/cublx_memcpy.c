@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cublx_calloc.c                                    :+:      :+:    :+:   */
+/*   cublx_memcpy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/20 07:04:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/08/20 07:18:33 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/09/09 15:54:16 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/09/09 15:54:42 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cublx.h"
-#include <stddef.h>
-#include <stdint.h>
-#include <stdlib.h>
 
-void	*cublx_calloc(size_t count, size_t size)
+void	*cublx_memcpy(void *dst, const void *src, size_t len)
 {
-	void	*_block;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	if (count == 0 || size == 0)
-		return (malloc(0));
-	if (size > SIZE_MAX / count)
-		return (NULL);
-	_block = malloc(count * size);
-	if (!_block)
-		return (NULL);
-	cublx_memset(_block, 0, count * size);
-	return (_block);
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	while (len--)
+		*d++ = *s++;
+	return (dst);
 }

@@ -6,22 +6,33 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 17:48:57 by yookamot          #+#    #+#              #
-#    Updated: 2025/09/05 20:30:27 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/09/09 17:11:19 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
+GNL_SRCS = get_next_line/get_next_line.c \
+           get_next_line/get_next_line_utils.c
+
 SRCS =  main.c \
         game_loop.c \
         init_game.c \
-        read_map.c \
-        load_textures.c \
-        free_array.c
+        free_array.c \
+        parse_cub_file.c \
+        parse_texture_and_color.c \
+        parse_map.c \
+        validate_map.c \
+        error_exit.c \
+        utils.c \
+        ft_split.c \
+        ft_strtrim.c \
+        draw_minimap.c \
+        $(GNL_SRCS)
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc
-CFLAGS = -I./libs/cublibx
+CFLAGS = -Wall -Wextra -Werror -I./libs/cublibx -I./get_next_line
 LDFLAGS = -L./libs/cublibx -lcublx -lXext -lX11 -lm -lz -g
 
 CUBLX_DIR = ./libs/cublibx

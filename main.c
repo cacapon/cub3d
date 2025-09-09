@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:12 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/05 20:18:32 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:11:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,30 @@ int	dest(t_cublx *cublx)
 	cublx->free_tex(cublx, &data->textures.west);
 	cublx->free_tex(cublx, &data->textures.south);
 	cublx_camera_del(&data->player.camera);
-	free_array(data->map);
-	free(data);
+	if (data && data->map)
+		free_array(data->map);
+	if (data)
+		free(data);
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	*data;
 	t_cublx	*cublx;
 
-	data = (t_data *)malloc(sizeof(t_data));
-	if (!data)
-		return (1);
-	read_map(data);
-	init_game(data);
+	if (argc != 2)
+		error_exit(NULL, -1, "Invalid number of arguments.");
 	cublx = cublx_new(WIDTH, HEIGHT, "cub3D");
 	if (!cublx)
-		return (free_array(data->map), free(data), 1);
-	load_all_textures(cublx, data);
+		error_exit(NULL, -1, "Failed to allocate cublx.");
 	cublx_set_hooks(cublx, game_loop, draw_buffer, dest);
+	data = (t_data *)malloc(sizeof(t_data));
+	if (!data)
+		error_exit(NULL, -1, "Failed to allocate memory.");
+	init_game(data);
 	cublx_set_user_param(cublx, data);
+	parse_cub_file(cublx, argv[1]);
 	cublx_run(cublx);
 	cublx_del(&cublx);
 	return (0);

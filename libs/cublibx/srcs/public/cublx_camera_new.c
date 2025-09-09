@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:18:39 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/01 19:07:00 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:12:44 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ t_camera	*cublx_camera_new(t_vec2 pos, t_vec2 dir, double fov_deg)
 	camera->move = _cublx_camera_move;
 	camera->rotate = _cublx_camera_rotate;
 	camera->set_fov = _cublx_camera_set_fov;
+	camera->set_view = _cublx_camera_set_view;
 	return (camera);
 }
