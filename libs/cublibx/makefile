@@ -6,12 +6,12 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/20 07:19:09 by ttsubo            #+#    #+#              #
-#    Updated: 2025/09/02 17:08:44 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/09/09 15:58:24 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libcublx.a
-CC = cc
+CC = gcc
 
 MLX_DIR = libs/mlx
 W_FLG	= -Wall -Wextra -Werror
@@ -38,12 +38,17 @@ PUB_SRCS = 	cublx_del.c cublx_new.c \
 			cublx_vec2.c cublx_vec2i.c \
 			cublx_camera_new.c cublx_camera_del.c \
 			cublx_get_tex_color.c \
-			cublx_run.c cublx_set_hooks.c cublx_set_user_param.c cublx_calloc.c 
+			cublx_run.c cublx_set_hooks.c cublx_set_user_param.c 
+PUB_UTILS = cublx_calloc.c cublx_memchr.c cublx_memcpy.c cublx_memset.c \
+			cublx_strchr.c cublx_strdup.c cublx_strlcpy.c cublx_strlen.c cublx_strtrim.c
 
 SRCS = $(addprefix $(PRI_SRCS_DIR)/, $(PRI_SRCS)) \
-	   $(addprefix $(PUB_SRCS_DIR)/, $(PUB_SRCS))
+	   $(addprefix $(PUB_SRCS_DIR)/, $(PUB_SRCS)) \
+	   $(addprefix $(PUB_SRCS_DIR)/utils/, $(PUB_UTILS))
 OBJS = $(addprefix $(OBJ_PRI_DIR)/,  $(PRI_SRCS:.c=.o)) \
-	   $(addprefix $(OBJ_PUB_DIR)/,  $(PUB_SRCS:.c=.o))
+	   $(addprefix $(OBJ_PUB_DIR)/,  $(PUB_SRCS:.c=.o)) \
+	   $(addprefix $(OBJ_PUB_DIR)/utils/,  $(PUB_UTILS:.c=.o))
+
 
 all: $(NAME)
 
