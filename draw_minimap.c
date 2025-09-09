@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:18:54 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:00:37 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:48:24 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static void	draw_grid_in_minimap(t_cublx *cublx, int i, int j, int color)
 		x = 0;
 		while (x < 10)
 		{
-			cublx->pset(cublx, (j * 10)+ 20 + x, (i * 10) + 20 + y, color);
-			//dst[(i * 10 + 20 + y) * WIDTH + (j * 10 + 20 + x)] = color;
+			cublx->pset(cublx, (j * 10) + 20 + x, (i * 10) + 20 + y, color);
 			x++;
 		}
 		y++;

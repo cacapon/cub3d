@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:13:43 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/06 18:58:36 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:56:42 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*left_str;
 
+	if (fd == -42)
+	{
+		free(left_str);
+		return (NULL);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > SIZE_MAX - 1)
 		return (NULL);
 	left_str = ft_read_to_leftstr(fd, left_str);

@@ -6,17 +6,16 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:12 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:11:09 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:48:49 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// TODO
 int	dest(t_cublx *cublx)
 {
 	t_data	*data;
-	
+
 	data = cublx->user->param;
 	cublx->free_tex(cublx, &data->textures.north);
 	cublx->free_tex(cublx, &data->textures.east);
