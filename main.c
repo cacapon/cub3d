@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:12 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:40:17 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:45:55 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	cublx_set_hooks(cublx, game_loop, draw_buffer, dest);
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
-		error_exit(NULL, -1, NULL, "Failed to allocate memory.");
+		error_exit(NULL, -1, "Failed to allocate memory.");
 	init_game(data);
 	cublx_set_user_param(cublx, data);
 	parse_cub_file(cublx, argv[1]);
