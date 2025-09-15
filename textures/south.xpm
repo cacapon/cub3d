@@ -2,10 +2,10 @@
 static char *e032b8343f7040d590c03afc8957d30dLa4SuEIHxDfl6xE4[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 4 1 ",
-"  c #3C3C3C",
-". c #676865",
-"X c #7A7B7B",
-"o c #919195",
+"  c #1E3A5F",
+". c #376294",
+"X c #5A86B2",
+"o c #85A9D0",
 /* pixels */
 "XXXX....    ooXXXXXX..    ooXXXX",
 "XXXX....    ooXXXXXX..    ooXXXX",
@@ -39,4 +39,4 @@ static char *e032b8343f7040d590c03afc8957d30dLa4SuEIHxDfl6xE4[] = {
 "XXXX..      ooooXXXX..      ooXX",
 "XXXX....    ooXXXXXX..    ooXXXX",
 "XXXX....    ooXXXXXX..    ooXXXX"
-};
+}
