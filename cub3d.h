@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:27:52 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:38:30 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/16 17:28:02 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "get_next_line/get_next_line.h"
 # include "cublx.h"
+# include "get_next_line/get_next_line.h"
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
@@ -66,9 +66,9 @@ void			validate_map(t_cublx *cublx, int fd);
 void			draw_minimap(t_cublx *cublx);
 void			free_array(char **array);
 void			init_game(t_data *data);
-void			load_all_textures(t_cublx *cublx, t_data *data);
 int				game_loop(t_cublx *cublx);
 int				draw_buffer(t_cublx *cublx);
 void			error_exit(t_cublx *cublx, int fd, char *msg);
+int				ft_count_char(char *str, char c);
 
 #endif

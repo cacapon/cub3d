@@ -6,7 +6,7 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 13:51:27 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/07 20:21:01 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/16 17:27:37 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,20 @@ char	*ft_strjoin(const char *str1, const char *str2)
 		str[j++] = str2[i++];
 	str[j] = '\0';
 	return (str);
+}
+
+int	ft_count_char(char *str, char c)
+{
+	int	count;
+	int	i;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			count++;
+		i++;
+	}
+	return (count);
 }
