@@ -6,11 +6,27 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 14:27:03 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/16 16:44:04 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/16 17:11:01 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	ft_count_char(char *str, char c)
+{
+	int	count;
+	int	i;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			count++;
+		i++;
+	}
+	return (count);
+}
 
 static int	parse_color(char *line, t_cublx *cublx, int fd)
 {
@@ -20,6 +36,11 @@ static int	parse_color(char *line, t_cublx *cublx, int fd)
 	int		b;
 	char	*trimmed;
 
+	if (ft_count_char(line, ',') != 2)
+	{
+		free(line);
+		error_exit(cublx, fd, "Invalid RGB format.");
+	}
 	trimmed = ft_strtrim(line, "\n");
 	if (!trimmed)
 		error_exit(cublx, fd, "Failed to allocate memory.");
