@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture_and_color.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 14:27:03 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/09 17:42:03 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/16 16:44:04 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	parse_color(char *line, t_cublx *cublx, int fd)
 	g = ft_atoi(array[1]);
 	b = ft_atoi(array[2]);
 	free_array(array);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || g > 255)
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		error_exit(cublx, fd, "RGB value out of range.");
 	return ((r << 16) | (g << 8) | b);
 }
@@ -43,13 +43,13 @@ static void	set_texture_and_color(t_cublx *cublx, char **array, int fd)
 	t_data	*data;
 
 	data = cublx->user->param;
-	if (cub_strcmp(array[0], "NO"))
+	if (cub_strcmp(array[0], "NO") && !data->textures.north.img)
 		cublx->load_xpm(cublx, &data->textures.north, array[1]);
-	else if (cub_strcmp(array[0], "SO"))
+	else if (cub_strcmp(array[0], "SO") && !data->textures.south.img)
 		cublx->load_xpm(cublx, &data->textures.south, array[1]);
-	else if (cub_strcmp(array[0], "WE"))
+	else if (cub_strcmp(array[0], "WE") && !data->textures.west.img)
 		cublx->load_xpm(cublx, &data->textures.west, array[1]);
-	else if (cub_strcmp(array[0], "EA"))
+	else if (cub_strcmp(array[0], "EA") && !data->textures.east.img)
 		cublx->load_xpm(cublx, &data->textures.east, array[1]);
 	else if (cub_strcmp(array[0], "F"))
 		data->floor_color = parse_color(array[1], cublx, fd);
