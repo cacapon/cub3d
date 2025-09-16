@@ -13,7 +13,7 @@
 #include "cublx.h"
 #include <math.h>
 
-static double	_get_perp_wall_dist(t_raycasting *rc, t_camera *cmr, char **map)
+static double	_get_perp_wall_dist(t_raycasting *rc, char **map)
 {
 	while (1)
 	{
@@ -33,11 +33,9 @@ static double	_get_perp_wall_dist(t_raycasting *rc, t_camera *cmr, char **map)
 			break ;
 	}
 	if (rc->side == HIT_XLINE)
-		return ((rc->grid_pos.x - cmr->pos.x + (1 - rc->step.x) / 2)
-			/ rc->ray_dir.x);
+		return (rc->side_dist.x - rc->delta_dist.x);
 	else
-		return ((rc->grid_pos.y - cmr->pos.y + (1 - rc->step.y) / 2)
-			/ rc->ray_dir.y);
+		return (rc->side_dist.y - rc->delta_dist.y);
 }
 
 static t_vec2i	_get_step(t_vec2 ray)
@@ -77,7 +75,7 @@ int	_cublx_raycasting(t_cublx *self, t_camera *camera, t_raycasting rc)
 	rc.step = _get_step(rc.ray_dir);
 	rc.delta_dist = (t_vec2){fabs(1 / rc.ray_dir.x), fabs(1 / rc.ray_dir.y)};
 	rc.side_dist = _get_side_dist(rc, camera);
-	rc.perp_wall_dist = _get_perp_wall_dist(&rc, camera, rc.map);
+	rc.perp_wall_dist = _get_perp_wall_dist(&rc, rc.map);
 	rc.line_h = (int)(self->win_size.y / rc.perp_wall_dist);
 	_cublx_draw_line(self, camera, rc);
 	return (0);
