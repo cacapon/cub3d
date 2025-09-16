@@ -6,20 +6,32 @@
 /*   By: yookamot <yookamot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 14:27:03 by yookamot          #+#    #+#             */
-/*   Updated: 2025/09/16 16:44:04 by yookamot         ###   ########.fr       */
+/*   Updated: 2025/09/16 17:27:22 by yookamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static bool	check_rgb_range(int *rgb)
+{
+	if (rgb[0] < 0 || rgb[0] > 255 || rgb[1] < 0 || rgb[1] > 255 || rgb[2] < 0
+		|| rgb[2] > 255)
+		return (false);
+	else
+		return (true);
+}
+
 static int	parse_color(char *line, t_cublx *cublx, int fd)
 {
 	char	**array;
-	int		r;
-	int		g;
-	int		b;
+	int		rgb[3];
 	char	*trimmed;
 
+	if (ft_count_char(line, ',') != 2)
+	{
+		free(line);
+		error_exit(cublx, fd, "Invalid RGB format.");
+	}
 	trimmed = ft_strtrim(line, "\n");
 	if (!trimmed)
 		error_exit(cublx, fd, "Failed to allocate memory.");
@@ -29,13 +41,13 @@ static int	parse_color(char *line, t_cublx *cublx, int fd)
 		error_exit(cublx, fd, "Failed to allocate memory.");
 	if (!array[0] || !array[1] || !array[2] || array[3])
 		error_exit(cublx, fd, "Invalid RGB format.");
-	r = ft_atoi(array[0]);
-	g = ft_atoi(array[1]);
-	b = ft_atoi(array[2]);
+	rgb[0] = ft_atoi(array[0]);
+	rgb[1] = ft_atoi(array[1]);
+	rgb[2] = ft_atoi(array[2]);
 	free_array(array);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	if (!check_rgb_range(rgb))
 		error_exit(cublx, fd, "RGB value out of range.");
-	return ((r << 16) | (g << 8) | b);
+	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
 static void	set_texture_and_color(t_cublx *cublx, char **array, int fd)
