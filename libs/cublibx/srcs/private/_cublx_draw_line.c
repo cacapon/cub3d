@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 16:27:07 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/05 19:15:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/16 17:03:29 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ static t_img	_get_tex(t_raycasting rc)
 	if (rc.side == HIT_XLINE)
 	{
 		if (rc.ray_dir.x > 0)
-			return (rc.texture_e);
-		else
 			return (rc.texture_w);
+		else
+			return (rc.texture_e);
 	}
 	else
 	{
 		if (rc.ray_dir.y > 0)
-			return (rc.texture_s);
-		else
 			return (rc.texture_n);
+		else
+			return (rc.texture_s);
 	}
 }
 
