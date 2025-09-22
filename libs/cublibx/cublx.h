@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/09 17:11:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/22 08:10:42 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "inc/cublx_vec2.h"
 # include "inc/cublx_vec2i.h"
 # include "inc/cublx_camera.h"
+# include "inc/cublx_errorcode.h"
 # include <X11/keysym.h>
 
 # define KEY_MAX 0xFFFF

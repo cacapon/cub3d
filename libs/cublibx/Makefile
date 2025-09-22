@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/20 07:19:09 by ttsubo            #+#    #+#              #
-#    Updated: 2025/09/09 17:12:03 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/09/22 08:39:01 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ PUB_SRCS = 	cublx_del.c cublx_new.c \
 			cublx_camera_new.c cublx_camera_del.c \
 			cublx_get_tex_color.c \
 			cublx_run.c cublx_set_hooks.c cublx_set_user_param.c 
-PUB_UTILS = cublx_calloc.c cublx_memchr.c cublx_memcpy.c cublx_memset.c \
+PUB_UTILS = cublx_calloc.c cublx_memchr.c cublx_memcpy.c cublx_memset.c cublx_perror.c \
 			cublx_strchr.c cublx_strdup.c cublx_strlcpy.c cublx_strlen.c cublx_strtrim.c
 
 SRCS = $(addprefix $(PRI_SRCS_DIR)/, $(PRI_SRCS)) \
