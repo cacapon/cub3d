@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 07:36:52 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/22 09:25:55 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/22 09:31:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef enum e_cublx_err
 	E_CUBLX_005,
 	E_CUBLX_006,
 	E_CUBLX_007,
+	E_CUBLX_008,
 	E_CUBLX_XXX,
 }	t_cublx_err;
 
@@ -34,6 +35,7 @@ typedef enum e_cublx_err
 # define ERR_CUBLX_005 "Failed to get data address." 
 # define ERR_CUBLX_006 "Failed to create views." 
 # define ERR_CUBLX_007 "Failed to load texture."
+# define ERR_CUBLX_008 "xpm is already set."
 # define ERR_CUBLX_XXX "Unknown error code."
 
 #endif

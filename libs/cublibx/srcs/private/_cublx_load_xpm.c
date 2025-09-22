@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:32:04 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/22 09:20:16 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/22 09:32:32 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	_cublx_load_xpm(t_cublx *self, t_cublx_img *img, char *xpm_path)
 
 	if (!img || !xpm_path)
 		return (cublx_perror(E_CUBLX_000), 1);
+	if (img->img)
+		return (cublx_perror(E_CUBLX_008), 1);
 	trim_path = cublx_strtrim(xpm_path, " \r\t\n");
 	if (!trim_path)
 		return (cublx_perror(E_CUBLX_001), 1);
