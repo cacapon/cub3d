@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:04:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/22 08:31:20 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/22 09:15:47 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	_allocate_mlx(t_cublx *cublx)
 		return (cublx_perror(E_CUBLX_000), 1);
 	cublx->mlx = mlx_init();
 	if (!cublx->mlx)
-		return (cublx_perror(E_CUBLX_001), 1);
+		return (cublx_perror(E_CUBLX_002), 1);
 	return (0);
 }
 
@@ -28,7 +28,7 @@ static int	_allocate_mlx_win(t_cublx *cublx, int w, int h, char *title)
 		return (cublx_perror(E_CUBLX_000), 1);
 	cublx->win = mlx_new_window(cublx->mlx, w, h, title);
 	if (!cublx->win)
-		return (cublx_perror(E_CUBLX_002), 1);
+		return (cublx_perror(E_CUBLX_003), 1);
 	return (0);
 }
 
@@ -38,7 +38,7 @@ static int	_allocate_cublx_user(t_cublx *cublx)
 		return (cublx_perror(E_CUBLX_000), 1);
 	cublx->user = cublx_calloc(1, sizeof(t_cub_user));
 	if (!cublx->user)
-		return (cublx_perror(E_CUBLX_003), 1);
+		return (cublx_perror(E_CUBLX_001), 1);
 	return (0);
 }
 
