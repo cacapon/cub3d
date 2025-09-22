@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:36:14 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/05 18:07:43 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/22 07:30:56 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,15 @@ void	_cublx_camera_move(
 	char **map,
 	double margin)
 {
+	t_vec2	plane;
 	t_vec2	new_pos;
+	double	plane_len;
 
+	plane = self->plane;
+	plane_len = sqrt(plane.x * plane.x + plane.y * plane.y);
 	new_pos = self->pos;
-	new_pos.x += -delta.y * self->dir.x + delta.x * self->plane.x;
-	new_pos.y += -delta.y * self->dir.y + delta.x * self->plane.y;
+	new_pos.x += -delta.y * self->dir.x + delta.x * (plane.x / plane_len);
+	new_pos.y += -delta.y * self->dir.y + delta.x * (plane.y / plane_len);
 	if (!_check_collision(cublx_vec2(new_pos.x, self->pos.y), map, margin))
 		self->pos.x = new_pos.x;
 	if (!_check_collision(cublx_vec2(self->pos.x, new_pos.y), map, margin))
