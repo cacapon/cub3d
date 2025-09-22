@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:04:18 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/02 17:08:27 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/22 08:31:20 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,41 @@
 static int	_allocate_mlx(t_cublx *cublx)
 {
 	if (!cublx)
-		return (1);
+		return (cublx_perror(E_CUBLX_000), 1);
 	cublx->mlx = mlx_init();
 	if (!cublx->mlx)
-		return (1);
+		return (cublx_perror(E_CUBLX_001), 1);
 	return (0);
 }
 
 static int	_allocate_mlx_win(t_cublx *cublx, int w, int h, char *title)
 {
 	if (!cublx || !cublx->mlx || !title)
-		return (1);
+		return (cublx_perror(E_CUBLX_000), 1);
 	cublx->win = mlx_new_window(cublx->mlx, w, h, title);
 	if (!cublx->win)
-		return (1);
+		return (cublx_perror(E_CUBLX_002), 1);
 	return (0);
 }
 
 static int	_allocate_cublx_user(t_cublx *cublx)
 {
 	if (!cublx)
-		return (1);
+		return (cublx_perror(E_CUBLX_000), 1);
 	cublx->user = cublx_calloc(1, sizeof(t_cub_user));
 	if (!cublx->user)
-		return (1);
+		return (cublx_perror(E_CUBLX_003), 1);
 	return (0);
 }
 
 static int	_allocate_views(t_cublx *cublx, int w, int h)
 {
 	if (!cublx)
-		return (1);
+		return (cublx_perror(E_CUBLX_000), 1);
 	_allocate_view(&cublx->main_view[0], cublx, w, h);
 	_allocate_view(&cublx->main_view[1], cublx, w, h);
 	if (!cublx->main_view[0].img || !cublx->main_view[1].img)
-		return (1);
+		return (cublx_perror(E_CUBLX_006), 1);
 	return (0);
 }
 
@@ -59,7 +59,7 @@ t_cublx	*cublx_new(int w, int h, char *title)
 
 	cublx = cublx_calloc(1, sizeof(t_cublx));
 	if (!cublx)
-		return (NULL);
+		return (cublx_perror(E_CUBLX_001), NULL);
 	if (_allocate_mlx(cublx) != 0)
 		return (cublx_del(&cublx), NULL);
 	if (_allocate_mlx_win(cublx, w, h, title) != 0)

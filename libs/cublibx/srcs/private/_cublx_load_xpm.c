@@ -6,16 +6,13 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:32:04 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/09 17:12:28 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/22 07:56:25 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cublx.h"
 #include <stdlib.h>
 
-// error_exit(data, fd, "Failed to allocate memory.");
-// error_exit(data, fd, "Failed to load texture.");
-// error_exit(data, fd, "Failed to get image data address.");
 /**
  * @brief Loads xpm data into the img structure.
  * 
