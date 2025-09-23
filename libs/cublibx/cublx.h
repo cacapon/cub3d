@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 07:01:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/09 17:11:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/22 09:07:53 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "inc/cublx_vec2.h"
 # include "inc/cublx_vec2i.h"
 # include "inc/cublx_camera.h"
+# include "inc/cublx_errorcode.h"
 # include <X11/keysym.h>
 
 # define KEY_MAX 0xFFFF
@@ -90,7 +91,7 @@ typedef struct s_cublx
 // public
 t_cublx	*cublx_new(int w, int h, char *title);
 int		cublx_del(t_cublx **cublx);
-void	cublx_set_hooks(t_cublx *cublx, int (*update)(t_cublx *),
+int		cublx_set_hooks(t_cublx *cublx, int (*update)(t_cublx *),
 			int (*draw)(t_cublx *), int (*destructor)(t_cublx *));
 void	cublx_set_user_param(t_cublx *cublx, void *user_param);
 void	cublx_run(t_cublx *cublx);

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:50:45 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/09/09 17:12:18 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/09/22 08:34:23 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ char	*cublx_strdup(const char *s1);
 size_t	cublx_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	cublx_strlen(const char *s);
 char	*cublx_strtrim(char const *s1, char const *set);
+void	cublx_perror(int errcode);
 
 #endif
